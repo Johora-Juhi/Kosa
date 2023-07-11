@@ -1,0 +1,22 @@
+.shopCartContent {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.shopCartContent img {
+    width: 70px;
+    border: 1px solid rgb(218, 218, 218);
+}
+
+.shopCartContent h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+

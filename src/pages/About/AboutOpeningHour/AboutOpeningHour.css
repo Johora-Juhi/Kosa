@@ -1,0 +1,92 @@
+.aboutOpeningHours{
+    background-image: url('../../../../src/Images/AboutPage/aboutOpeningHourBackground.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.openingHoursMainContent {
+    padding: 100px 10px;
+}
+
+.openingHoursContent h2 {
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: rgb(160, 160, 160);
+}
+
+.openingHoursContent h1 {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 200;
+    color: #D4A977;
+    font-size: 55px;
+    letter-spacing: 2px;
+    margin: 20px 0px;
+}
+
+.btn1ohA {
+    padding: 13px 27px;
+    box-sizing: border-box;
+    background-color: black;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: .4s;
+    margin: 10px 0;
+    border: 1px solid #fff;
+}
+
+.btn1ohA:hover {
+    box-shadow: 0 0 5px 2px #777777;
+}
+
+.btn2oh {
+    padding: 12px 26px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 2px solid rgb(63, 63, 63);
+    color: rgb(49, 49, 49);
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: .4s;
+    margin: 10px 0;
+}
+
+.btn2oh:hover {
+    border: 3px solid rgb(63, 63, 63);
+    box-shadow: 0 0 7px 1px inset #D4A977;
+    border: 2px solid #D4A977;
+}
+
+.openingHoursTime {
+    border-left: 1px solid black;
+}
+
+.openingHoursTime h4 {
+    line-height: 65px;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.openingHoursTime h4:nth-child(1) {
+    font-weight: 400;
+    color: rgb(202, 202, 202);
+    letter-spacing: 2px;
+}
+
+@media only screen and (max-width:990px) {
+    .openingHoursTime {
+        border: none;
+        text-align: center;
+    }
+
+    .aboutUsBtns{
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .openingHoursTime{
+        padding-left: 0px!important;
+    }
+}

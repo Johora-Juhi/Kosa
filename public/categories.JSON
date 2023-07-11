@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Conditioner"
+    },
+    {
+        "id": 2,
+        "name": "Hair Color"
+    },
+    {
+        "id": 3,
+        "name": "Hair Care"
+    },
+    {
+        "id": 4,
+        "name": "Serum"
+    },
+    {
+        "id": 5,
+        "name": "Shampoo"
+    },
+    {
+        "id": 6,
+        "name": "Styling"
+    }
+]

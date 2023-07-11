@@ -1,0 +1,122 @@
+[
+    {
+        "img": "https://i.ibb.co/FxwcD11/p1.png",
+        "leftName": "CONDITIONER",
+        "rightName": "HAIR COLOR",
+        "productName": "Anti-Frizz Conditioner",
+        "price": 14.66,
+        "catagory": "conditioner"
+    },
+    {
+        "img": "https://i.ibb.co/WHJNdh7/p2.png",
+        "leftName": "HAIR COLOR",
+        "rightName": "SHAMPOO",
+        "productName": "Color Conserve Shampoo",
+        "price": 12.04,
+        "catagory": "hairColor"
+    },
+    {
+        "img": "https://i.ibb.co/wy49Gv1/p3.png",
+        "leftName": "CONDITIONER",
+        "rightName": "STYLING",
+        "productName": "Deep Moisture Set",
+        "price": 17.56 ,
+        "catagory": "conditioner"
+    },
+    {
+        "img": "https://i.ibb.co/gZLtknj/p4.png",
+        "leftName": "CONDITIONER",
+        "rightName": "STYLING",
+        "productName": "Hair Conditioner",
+        "price": 94.06,
+        "catagory": "conditioner"
+    },
+    {
+        "img": "https://i.ibb.co/H2RwX2N/p5.png",
+        "leftName": "HAIR COLOR",
+        "rightName": "SERUM",
+        "productName": "Hair Repair Drops",
+        "price": 45.23,
+        "catagory": "hairCare"
+    },
+    {
+        "img": "https://i.ibb.co/ys5jxgk/p6.png",
+        "leftName": "SHAMPOO",
+        "rightName": "STYLING",
+        "productName": "Hair Repair Shampoo",
+        "price": 65.23,
+        "catagory": "styling"
+    },
+    {
+        "img": "https://i.ibb.co/QJ63cp7/p7.png",
+        "leftName": "HAIR CARE",
+        "rightName": "SERUM",
+        "productName": "Intense Repair Serum",
+        "price": 20.44 ,
+        "catagory": "hairCare"
+    },
+    {
+        "img": "https://i.ibb.co/kD2cqjG/p8.png",
+        "leftName": "CONDITIONER",
+        "rightName": "STYLING",
+        "productName": "Leave-in Conditioner",
+        "price": 18.77,
+        "catagory": "conditioner"
+    },
+    {
+        "img": "https://i.ibb.co/pXNmWWj/p9.png",
+        "leftName": "SMAPOO",
+        "rightName": "STYLING",
+        "productName": "Light Moisture Shampoo",
+        "price": 14.99,
+        "catagory": "styling"
+    },
+    {
+        "img": "https://i.ibb.co/n05ckWH/p10.png",
+        "leftName": "HAIR CARE",
+        "rightName": "SERUM",
+        "productName": "Moisture Treatment",
+        "price": 15.08,
+        "catagory": "hairCare"
+    },
+    {
+        "img": "https://i.ibb.co/gW6Yc5B/p11.png",
+        "leftName": "HAIR CARE",
+        "rightName": "SERUM",
+        "productName": "Sea Salt Spray",
+        "price": 16.99 ,
+        "catagory": "hairCare"
+    },
+    {
+        "img": "https://i.ibb.co/4fZH59k/p12.png",
+        "leftName": "HAIR CARE",
+        "rightName": "STYLING",
+        "productName": "Serum Vitamin Drops",
+        "price": 15.99,
+        "catagory": "hairCare"
+    },
+    {
+        "img": "https://i.ibb.co/PTC1J4s/p13.png",
+        "leftName": "HAIR CARE",
+        "rightName": "STYLING",
+        "productName": "Styling Mousse",
+        "price": 16.44,
+        "catagory": "styling"
+    },
+    {
+        "img": "https://i.ibb.co/6FQ2DD1/p14.png",
+        "leftName": "HAIR COLOR",
+        "rightName": "SHAMPOO",
+        "productName": "Texturing Hair Spray",
+        "price": 30.99,
+        "catagory": "hairColor"
+    },
+    {
+        "img": "https://i.ibb.co/Qrmx1d9/p15.png",
+        "leftName": "HAIR CARE",
+        "rightName": "SERUM",
+        "productName": "Vitamin C Serum Mask",
+        "price": 20.99,
+        "catagory": "hairCare"
+    }
+]

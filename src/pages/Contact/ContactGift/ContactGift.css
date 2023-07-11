@@ -1,0 +1,71 @@
+.contactGift{
+    background-image: url('../../../../src/Images/ContactPage/giftVoucher.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 740px;
+    display: grid;
+    align-content: center;
+}
+
+.cgContainer{
+    background-color: rgba(0, 0, 0, 0.377);
+    max-width: 580px;
+    text-align: center;
+}
+
+.specialLetterContact{
+    font-family: 'Pinyon Script', cursive;
+    font-size: 145px;
+    color: #afafaf77;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overwriteTitleContact{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.mainTitleContactss{
+    color: #D4A977;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto Slab', serif;
+    font-size: 60px;
+    font-weight: 100;
+    letter-spacing: 4px;
+}
+
+.cgContainer p{
+    color: rgb(219, 219, 219);
+    padding: 0 80px;
+    font-size: 17px;
+    margin-top: -40px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    padding-top: 20px;
+}
+
+.cgContainer h2{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 14px 20px;
+    background-color: rgba(0, 0, 0, 0.753);
+    display: inline-block;
+    margin-bottom: 70px;
+    margin-top: 20px;
+}
+
+.cgContainer i{
+    font-size: 17px;
+}

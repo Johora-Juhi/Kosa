@@ -1,0 +1,46 @@
+.proContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.show{
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: rgb(83, 83, 83);
+}
+
+.rightProducts h4{
+    color: rgb(83, 83, 83);
+    letter-spacing: 2px;
+    font-weight: 400;
+    margin-bottom: 50px;
+}
+
+.rightProducts h5{
+    font-size: 23px;
+    color: rgb(83, 83, 83);
+    letter-spacing: 2px;
+    font-weight: 400;
+    margin-bottom: 50px;
+    margin-top: 80px;
+}
+
+.subtotalStyle{
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+/* Media Query */
+
+@media only screen and (max-width: 768px) {
+    .proContainer{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+@media only screen and (min-width:769px) and (max-width: 992px) {
+    .proContainer{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+

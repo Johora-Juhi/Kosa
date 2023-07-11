@@ -1,0 +1,114 @@
+.hairContent1 {
+    background-color: black;
+    color: #fff;
+    transition: all 600ms ease-in-out;
+    padding: 80px 20px;
+}
+.hairContent2 {
+    background: rgba(0,0,0,0.0 ) url('../../../../src/Images/HomePage/TheAtmosphere.jpg');
+    color: #fff;
+    transition: all 600ms ease-in-out;
+    padding: 80px 20px;
+    background-size: cover;
+}
+.hairContent3 {
+    background-color: black;
+    color: #fff;
+    transition: all 600ms ease-in-out;
+    padding: 80px 20px;
+}
+.hairContent4 {
+    background-color: rgb(240, 240, 240);
+    color: rgb(39, 39, 39);
+    transition: all 600ms ease-in-out;
+    padding: 80px 20px;
+}
+
+.hairContent1:hover {
+    background: rgba(0,0,0,0.6 ) url('../../../../src/Images/HomePage/HairAndColor.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+}
+.hairContent2:hover {
+    background: rgba(0,0,0,0.3 ) url('../../../../src/Images/HomePage/TheAtmosphere.jpg');
+    background-blend-mode: darken;
+    background-size: cover;
+}
+.hairContent3:hover {
+    background: rgba(0,0,0,0.3 ) url('../../../../src/Images/HomePage/OurBestTeam.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+}
+.hairContent4:hover {
+background-color: rgb(128, 128, 128);
+color: #fff;
+}
+
+
+.hairContent1 h1, .hairContent2 h1, .hairContent3 h1,.hairContent4 h1 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 100;
+    font-size: 190px;
+    color: #D4A977;
+}
+
+.hairContent1 h3, .hairContent2 h3, .hairContent3 h3,.hairContent4 h3 {
+    letter-spacing:2px;
+    font-weight: 400;
+    font-size: 36px;
+    margin: 40px 0 30px 0;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.hairContent1 p, .hairContent2 p, .hairContent3 p,.hairContent4 p {
+    letter-spacing:2px;
+    font-weight: 300;
+    font-size: 15px;
+    color: rgb(230, 230, 230);
+    margin-bottom: 40px;
+}
+#verySpecial h3{
+    color: #000;
+    transition: .4s;
+}
+#verySpecial:hover h3{
+    color: #fff;
+} 
+.hairContent4 p{
+    color: black;
+    font-weight: 400;
+    transition: .4s;
+}
+
+.hairContent4:hover p{
+    color: #fff;
+}
+
+.hairContent button{
+    background-color: rgba(0, 0, 0, 0);
+    letter-spacing: 1px;
+    color: #fff;
+    border: none;
+    border: 1px solid #fff;
+    padding: 15px 30px;
+    transition: .4s;
+    font-weight: 500;
+}
+
+.hairContent4 button{
+    background-color: rgb(0, 0, 0);
+    padding: 16px 31px;
+}
+
+.hairContent button:hover{
+    background-color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
+    padding: 16px 31px;
+}

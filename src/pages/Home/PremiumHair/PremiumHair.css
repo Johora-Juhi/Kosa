@@ -1,0 +1,104 @@
+.premiumHair {
+    background-image: url('../../../../src/Images/HomePage/PremiumHairService.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    background-attachment: fixed;
+}
+
+.specialP {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 170px;
+    color: #e6e6e64e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overwriteTitleT {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.mainTitleK {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(231, 231, 231);
+    letter-spacing: 3px;
+}
+
+.premiumHairContent {
+    text-align: center;
+}
+
+.premiumHairContent h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 60px;
+    font-weight: 200;
+    color: #D4A977;
+    text-align: center;
+    margin-top: -50px;
+    margin-bottom: 40px;
+}
+
+.premiumHairContent a {
+    background-color: rgba(0, 0, 0, 0);
+    letter-spacing: 1px;
+    color: #fff;
+    border: none;
+    border: 1px solid #fff;
+    padding: 15px 30px;
+    transition: .4s;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.premiumHairContent a:hover {
+    background-color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
+    padding: 16px 31px;
+}
+
+.premiumHairRight {
+    text-align: left;
+    display: flex;
+    margin-top: 30px;
+}
+
+.premiumHairRight img {
+    width: 80px;
+}
+
+.premiumHairRight h3 {
+    color: #ececec;
+    margin-top: 10px;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.premiumHairRight h4 {
+    color: #d6d6d6;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.pHRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

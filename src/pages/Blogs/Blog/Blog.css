@@ -1,0 +1,41 @@
+.blogTag{
+    color: rgb(119, 119, 119);
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.blogTitle{
+    letter-spacing: 1px;
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 18px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.blogTimeComment{
+    color: rgb(107, 107, 107);
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.blogDescription{
+    color: rgb(77, 77, 77);
+    letter-spacing: 1.1px;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.blogButton{
+    border: 0;
+    background-color: #000;
+    padding: 13px 20px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: .5px;
+    margin-bottom: 50px;
+}

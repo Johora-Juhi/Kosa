@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "img": "https://i.ibb.co/H2RwX2N/p5.png",
+        "leftName": "HAIR COLOR",
+        "rightName": "SERUM",
+        "productName": "Hair Repair Drops",
+        "price": 45.23
+    },
+    {
+        "id": 2,
+        "img": "https://i.ibb.co/QJ63cp7/p7.png",
+        "leftName": "HAIR CARE",
+        "rightName": "SERUM",
+        "productName": "Intense Repair Serum",
+        "price": 20.44 
+    },
+    {
+        "id": 3,
+        "img": "https://i.ibb.co/PTC1J4s/p13.png",
+        "leftName": "HAIR CARE",
+        "rightName": "STYLING",
+        "productName": "Styling Mousse",
+        "price": 16.44
+    },
+    {
+        "id": 4,
+        "img": "https://i.ibb.co/6FQ2DD1/p14.png",
+        "leftName": "HAIR COLOR",
+        "rightName": "SHAMPOO",
+        "productName": "Texturing Hair Spray",
+        "price": 30.99
+    },
+    {
+        "id": 5,
+        "img": "https://i.ibb.co/Qrmx1d9/p15.png",
+        "leftName": "HAIR CARE",
+        "rightName": "SERUM",
+        "productName": "Vitamin C Serum Mask",
+        "price": 20.99
+    }
+]

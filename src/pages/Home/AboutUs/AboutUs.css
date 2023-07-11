@@ -1,0 +1,53 @@
+.aboutUsContent{
+    background-color: black;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutUs h2{
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: rgb(177, 177, 177);
+}
+
+.aboutUs h1{
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 200;
+    color: #D4A977;
+    font-size: 55px;
+    letter-spacing: 2px;
+    margin: 25px 0px;
+}
+
+.aboutUs p{
+    letter-spacing: 1px;
+    font-size: 17px;
+    text-align: center;
+    color: #fff;
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+
+.aboutUsBtn{
+    padding: 12px 26px;
+    box-sizing: border-box;
+    background-color: black;
+    border: 1px solid #fff;
+    color: #fff;
+    transition: .4s;
+}
+
+.aboutUsBtn:hover{
+    box-shadow: 0 0 7px 1px inset #D4A977;
+    border: 1px solid #D4A977;
+    border-radius: 5px;
+}
+
+
+.aboutUsContent{
+    box-sizing: border-box;
+}

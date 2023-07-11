@@ -1,0 +1,27 @@
+.shopBanner {
+    background-image: url('../../../../src/Images/ShopPage/shopBackground.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+.shopBanner h1 {
+    font-size: 100px;
+    font-family: 'Roboto Slab', serif;
+    color: #D4A977;
+    font-weight: 200;
+    letter-spacing: 5px;
+}
+
+.shopBanner h6{
+    letter-spacing: 5px;
+    font-size: 28px;
+    color: rgb(218, 218, 218);
+}

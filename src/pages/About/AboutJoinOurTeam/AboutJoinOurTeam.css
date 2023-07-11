@@ -1,0 +1,69 @@
+.aboutJoinOurTeam {
+    background-image: url('../../../../src/Images/AboutPage/aboutTeamBackground.jpg');
+    height: 550px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.specialLetter {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 170px;
+    color: #d4a8774e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overwriteTitleABB {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-top: -130px;
+}
+
+.mainTitleABB {
+    margin-top: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto Slab', serif;
+    font-size: 55px;
+    font-weight: 200;
+    color: black;
+}
+
+.lgit {
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.aboutJoinOurTeam h6 {
+    color: rgb(83, 83, 83);
+    letter-spacing: 1px;
+    line-height: 20px;
+    margin-top: -20px;
+    margin-bottom: 40px;
+}
+
+.aJOTbtn {
+    text-decoration: none;
+    color: #fff;
+    padding: 13px 25px;
+    background-color: black;
+}
+
+@media only screen and (max-width:995px) {
+    .lgit {
+       padding-bottom: 40px;
+    }
+}

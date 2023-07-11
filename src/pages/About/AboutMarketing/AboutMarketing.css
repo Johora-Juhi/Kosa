@@ -1,0 +1,40 @@
+.aboutMarketing{
+    background-color: black;
+}
+
+.aboutMarketing .card{
+    background-color: rgb(0, 0, 0);
+    padding: 30px 0;
+    border: 1px solid rgb(36, 36, 36);
+    box-shadow: 0 0 15px 1px rgb(44, 44, 44) inset;
+    border-radius: 8px;
+}
+
+.aboutRow{
+    padding: 60px 5px;
+}
+
+.aboutCImg{
+    width: 80px;
+}
+
+.cardSection{
+    display: flex;
+    justify-content: center;
+    align-items: bottom;
+    gap: 20px;
+}
+
+.cardSection h3{
+    font-family: 'Pinyon Script', cursive;
+    font-size: 50px;
+    color: #FFF;
+    margin-top: 0;
+}
+
+.cardSection h4{
+    font-size: 20px;
+    color: rgb(199, 199, 199);
+    letter-spacing: 1px;
+    margin-top: -10px;
+}

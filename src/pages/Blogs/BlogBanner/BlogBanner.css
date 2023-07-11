@@ -1,0 +1,18 @@
+.blog-banner{
+    background: url('../../../../src/Images/BlogPage/blogBanner.jpg');
+    height: 600px;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainTitleBanner {
+    font-family: 'Roboto Slab', serif;
+    font-size: 90px;
+    font-weight: 200;
+    letter-spacing: 8px;
+    color: #D4A977;
+}

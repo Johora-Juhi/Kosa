@@ -1,0 +1,43 @@
+.cgitContentM {
+    padding: 100px 0 100px 0;
+    background-color: black;
+}
+
+.cgitContent h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 50px;
+    color: #D4A977;
+    font-weight: 300;
+    transition: .4s;
+}
+
+.cgitContent h3 {
+    font-size: 18px;
+    color: rgb(190, 190, 190);
+}
+
+.cgitContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cgitContent p{
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.cgitContentM:hover h2{
+    letter-spacing: 8px;
+    color: #fff;
+}
+
+
+.spsp input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    letter-spacing: 2.5px;
+}

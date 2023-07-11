@@ -1,0 +1,99 @@
+.contactBanner{
+    background-image: url('../../../../src/Images/ContactPage/contact.jpg');
+    height: 900px;
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.specialLetterContactCCC{
+    font-family: 'Pinyon Script', cursive;
+    font-size: 200px;
+    color: #8b8b8b4e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overwriteTitleContact{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.mainTitleContact{
+    color: #D4A977;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto Slab', serif;
+    font-size: 90px!important;
+    font-weight: 100;
+    letter-spacing: 4px;
+}
+
+.contactUss label{
+    color: #fff;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+.contactUss input{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(124, 124, 124);
+    margin: 5px 0;
+    padding: 10px 0;
+    outline: none;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.contactUss ::placeholder{
+    color: rgb(204, 204, 204);
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.contactUss textarea{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid rgb(124, 124, 124);
+    padding: 0 5px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.cuBtn{
+    display: inline-block;
+    padding: 0 10px!important;
+    margin: 0;
+}
+
+.cuBtn button{
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 13px 40px;
+    letter-spacing: 2px;
+    transition: .3s;
+}
+
+.cuBtn button:hover{
+    background-color: #ffffff;
+    color: #000;
+}
+
+@media only screen and (max-width:768px) {
+    .mainTitleContact{
+        font-size: 70px;
+    }
+}

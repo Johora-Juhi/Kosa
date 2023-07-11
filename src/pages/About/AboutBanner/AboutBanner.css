@@ -1,0 +1,79 @@
+.aboutBanner {
+    background-image: url('../../../../src/Images/AboutPage/aboutBanner.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.specialLetterA {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 220px;
+    color: #b4b4b43d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overwriteTitleA {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.mainTitleA {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto Slab', serif;
+    font-size: 90px;
+    font-weight: 200;
+    letter-spacing: 8px;
+    margin-top: 40px;
+    color: #D4A977;
+}
+
+.aboutBanner h2 {
+    margin-top: -110px;
+    font-size: 24px;
+    color: rgb(185, 185, 185);
+    letter-spacing: 1px;
+}
+
+.aboutBanner h3 {
+    text-align: center;
+    font-weight: 400;
+    max-width: 700px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    padding: 15px 25px;
+    letter-spacing: 1px;
+}
+
+@media only screen and (max-width:688px) {
+    .specialLetterA {
+        display: none;
+    }
+
+    .aboutBanner {
+        text-align: center;
+    }
+
+    .aboutBanner h2 {
+        margin-top: 25px;
+    }
+
+    .mainTitleA {
+        position: relative;
+        font-size: 70px;
+    }
+}
