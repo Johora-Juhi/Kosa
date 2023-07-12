@@ -6,8 +6,11 @@ import AboutJoinOurTeam from '../AboutJoinOurTeam/AboutJoinOurTeam';
 import AboutMarketing from '../AboutMarketing/AboutMarketing';
 import AboutOpeningHour from '../AboutOpeningHour/AboutOpeningHour';
 import AboutStories from '../AboutStories/AboutStories';
+import useTitle from '../../../hooks/useTitle';
 
 const AboutComponents = () => {
+    useTitle('About');
+
     return (
         <div>
             <AboutBanner></AboutBanner>

@@ -11,8 +11,11 @@ import Hair from '../Hair/Hair';
 import OpeningHours from '../OpeningHours/OpeningHours';
 import PremiumHair from '../PremiumHair/PremiumHair';
 import SendingInterest from '../SendingInterest/SendingInterest';
+import useTitle from '../../../hooks/useTitle';
 
 const HomeComponents = () => {
+    useTitle('Home');
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
