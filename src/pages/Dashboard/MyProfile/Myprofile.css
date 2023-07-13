@@ -1,0 +1,23 @@
+.inputField{
+    background-color: #fff;
+              border: 1px solid #e2e2e2;
+              padding: 10px 10px,
+}
+.imageIcon{
+    width: 200px;
+    height:  200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: #fff;
+    border-radius: 100%;
+    font-size: 100px;
+    font-weight: 600;
+}
+.empty-input {
+    border-color: red ;
+  }
+.changeBorder {
+    border-color: #e2e2e2;
+  }

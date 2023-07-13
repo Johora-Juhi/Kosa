@@ -7,7 +7,7 @@ import "./AddBlogs.css";
 import useTitle from "../../../hooks/useTitle";
 
 const AddBlogs = () => {
-  useTitle('Add blog');
+  useTitle("Add blog");
 
   const {
     register,
@@ -25,7 +25,6 @@ const AddBlogs = () => {
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-    console.log(url);
     fetch(url, {
       method: "POST",
       body: formData,
@@ -73,91 +72,89 @@ const AddBlogs = () => {
           Add New Blog
         </h1>
         <form
-          className="bg-black py-5 px-4 rounded"
+          className=" py-5 px-4 rounded"
+          style={{
+            border: "1px solid #bd9b07",
+          }}
           onSubmit={handleSubmit(handleAddBlog)}
         >
           <div
-            className="form-control m-0 mb-3 row text-white"
-            style={{ backgroundColor: "#212121", border: "1px solid #806800" }}
+            className="form-control m-0 mb-3 row "
+            style={{ border: "1px solid #bd9b07" }}
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Blog Title</span>
             </label>
             <input
               type="text"
-              className="col-11 border-0 outline-0 text-white"
-              style={{ outline: "0", backgroundColor: "#212121" }}
+              className="col-11 border-0 outline-0 "
+              style={{ outline: "0" }}
               {...register("blogTitle")}
             />
           </div>
 
           <div
-            className="form-control m-0 mb-3 row text-white"
-            style={{ backgroundColor: "#212121", border: "1px solid #806800" }}
+            className="form-control m-0 mb-3 row "
+            style={{ border: "1px solid #bd9b07" }}
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Tag</span>
             </label>
             <input
               type="text"
-              className="col-11 border-0 outline-0 text-white"
-              style={{ outline: "0", backgroundColor: "#212121" }}
+              className="col-11 border-0 outline-0 "
+              style={{ outline: "0" }}
               {...register("tag")}
             />
           </div>
 
           <div
-            className="form-control m-0 mb-3 row text-white"
-            style={{ backgroundColor: "#212121", border: "1px solid #806800" }}
+            className="form-control m-0 mb-3 row "
+            style={{ border: "1px solid #bd9b07" }}
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Quote</span>
             </label>
             <input
               type="text"
-              className="col-11 border-0 outline-0 text-white"
-              style={{ outline: "0", backgroundColor: "#212121" }}
+              className="col-11 border-0 outline-0 "
+              style={{ outline: "0" }}
               {...register("quote")}
             />
           </div>
 
           <div
-            className="form-control m-0 text-white row mb-3"
-            style={{ backgroundColor: "#212121", border: "1px solid #806800" }}
+            className="form-control m-0  row mb-3"
+            style={{ border: "1px solid #bd9b07" }}
           >
             <label className="label col-1 p-0">
               <span className="label-text">Description</span>
             </label>
             <textarea
-              className="textarea outline-0 text-white border-0 w-100 col-11 p-0"
-              style={{ outline: "0", backgroundColor: "#212121" }}
+              className="textarea outline-0  border-0 w-100 col-11 p-0"
+              style={{ outline: "0" }}
               {...register("description")}
             ></textarea>
           </div>
 
           <div
-            style={{ backgroundColor: "#212121", border: "1px solid #806800" }}
+            style={{ border: "1px solid #bd9b07" }}
             className="form-control p-0"
           >
             <input
               style={{
-                backgroundColor: "#212121",
-                border: "1px solid #806800",
+                border: "1px solid #bd9b07",
               }}
               type="file"
               {...register("image", {
                 required: "Photo is Required",
               })}
-              className="form-control form-control-md text-white"
+              className="form-control form-control-md "
             />
             {errors.img && <p className="text-red-500">{errors.img.message}</p>}
           </div>
 
-          <input
-            className="mt-4 bg-white px-4 py-2 rounded"
-            value="Add Blog"
-            type="submit"
-          />
+          <input className="mt-3 bg-black text-white px-5 py-2 rounded" value="Add Blog" type="submit" />
         </form>
       </div>
     </div>
