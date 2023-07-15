@@ -17,7 +17,6 @@ const AddBlogs = () => {
   const navigate = useNavigate();
 
   const imageHostKey = process.env.REACT_APP_imgbb_key;
-  console.log(imageHostKey);
 
   const handleAddBlog = (data) => {
     const today = format(new Date(), "PP");
@@ -74,13 +73,13 @@ const AddBlogs = () => {
         <form
           className=" py-5 px-4 rounded"
           style={{
-            border: "1px solid #bd9b07",
+            border: "1px solid #e2e2e2",
           }}
           onSubmit={handleSubmit(handleAddBlog)}
         >
           <div
             className="form-control m-0 mb-3 row "
-            style={{ border: "1px solid #bd9b07" }}
+            style={{ border: "1px solid #e2e2e2" }}
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Blog Title</span>
@@ -95,7 +94,7 @@ const AddBlogs = () => {
 
           <div
             className="form-control m-0 mb-3 row "
-            style={{ border: "1px solid #bd9b07" }}
+            style={{ border: "1px solid #e2e2e2" }}
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Tag</span>
@@ -110,7 +109,7 @@ const AddBlogs = () => {
 
           <div
             className="form-control m-0 mb-3 row "
-            style={{ border: "1px solid #bd9b07" }}
+            style={{ border: "1px solid #e2e2e2" }}
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Quote</span>
@@ -125,7 +124,7 @@ const AddBlogs = () => {
 
           <div
             className="form-control m-0  row mb-3"
-            style={{ border: "1px solid #bd9b07" }}
+            style={{ border: "1px solid #e2e2e2" }}
           >
             <label className="label col-1 p-0">
               <span className="label-text">Description</span>
@@ -138,12 +137,12 @@ const AddBlogs = () => {
           </div>
 
           <div
-            style={{ border: "1px solid #bd9b07" }}
+            style={{ border: "1px solid #e2e2e2" }}
             className="form-control p-0"
           >
             <input
               style={{
-                border: "1px solid #bd9b07",
+                border: "1px solid #e2e2e2",
               }}
               type="file"
               {...register("image", {

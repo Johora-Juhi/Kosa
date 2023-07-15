@@ -1,0 +1,17 @@
+.pagination{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.pagination button{
+    /* margin-right: 10px; */
+    width: 40px;
+    padding: 8px;
+}
+.pagination .selected{
+    background-color: rgb(8, 8, 8);
+    border: rgb(9, 9, 9);
+    font-weight: bold;
+    width: 40px;
+    padding: 8px;
+    color: white;
+}

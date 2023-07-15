@@ -8,7 +8,7 @@ export const productApi = createApi({
   tagTypes: ["Products"],
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => "/products",
+      query: () => `/products`,
       providesTags: ["Products"],
     }),
     removeProduct: builder.mutation({
