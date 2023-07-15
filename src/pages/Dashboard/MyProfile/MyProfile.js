@@ -50,11 +50,7 @@ const MyProfile = () => {
     }
   };
   setTimeout(selectCountry, 2000);
-  function ami (){
-    function tumi (){
 
-    }
-  }
 
   const updateprofile = (event) => {
     event.preventDefault();
