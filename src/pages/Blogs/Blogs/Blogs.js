@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Blog from "../Blog/Blog";
+import './Blogs.css'
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(5);
   useEffect(() => {
-    fetch("https://hair-saloon-server.vercel.app/blogs")
+    fetch(
+      `https://hair-saloon-server.vercel.app/blogs?page=${page}&size=${size}`
+    )
       .then((res) => res.json())
-      .then((data) => setBlogs(data));
-  }, []);
+      .then((data) => {
+        setBlogs(data.blogs);
+        setCount(data.count);
+      });
+  }, [page, size]);
+  const pages = Math.ceil(count / size);
+
   return (
     <div className="container mx-auto py-5">
       <div className="row">
@@ -15,6 +26,27 @@ const Blogs = () => {
           {blogs?.map((blog) => (
             <Blog key={blog._id} blog={blog}></Blog>
           ))}
+          <div className="pagination d-flex justify-content-center ">
+            
+            {[...Array(pages).keys()].map((number) => (
+              <button
+                key={number}
+                className={page === number ? "selected" : ""}
+                onClick={() => setPage(number)}
+              >
+                {number}
+              </button>
+            ))}
+            <select onChange={(event) => setSize(event.target.value)}>
+              
+              <option value="5" selected>5</option>
+              <option value="10">
+                10
+              </option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </div>
         </div>
         <div className="col-3 ps-4">
           <h1

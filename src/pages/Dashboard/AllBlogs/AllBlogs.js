@@ -9,7 +9,7 @@ const AllBlogs = () => {
   const { data: blogs = [], refetch } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const res = await fetch("https://hair-saloon-server.vercel.app/blogs");
+      const res = await fetch("https://hair-saloon-server.vercel.app/allblogs");
       const data = await res.json();
       return data;
     },
@@ -82,11 +82,11 @@ const AllBlogs = () => {
                   <td>{blog._id}</td>
                   <td>
                     <button
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
+                      // data-bs-toggle="modal"
+                      // data-bs-target="#exampleModal"
                       // onClick={() => { handleEditUser(blog) }}
                       style={{ backgroundColor: "#000196" }}
-                      type="button"
+                      // type="button"
                       className="btn btn-sm text-white py-0"
                     >
                       Make Change

@@ -27,7 +27,7 @@ const MyProfile = () => {
   const { data: profile = [], refetch } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/profile/${user?.email}`, {
+      const res = await fetch(`https://hair-saloon-server.vercel.app/profile/${user?.email}`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -85,7 +85,7 @@ const MyProfile = () => {
         role,
       };
 
-      fetch(`http://localhost:5000/users/${user?.email}`, {
+      fetch(`https://hair-saloon-server.vercel.app/users/${user?.email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
