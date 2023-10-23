@@ -82,7 +82,7 @@ const AllRegisteredUser = () => {
         </h1>
         <div className="table-responsive">
           <table className="table table-striped border rounded">
-          <caption>List of users</caption>
+          {/* <caption>List of users</caption> */}
             <thead>
               <tr>
                 <th className="text-dark" scope="col">
@@ -153,9 +153,9 @@ const AllRegisteredUser = () => {
                 </tr>
               ))}
             </tbody>
-            <tfoot>
+            {/* <tfoot>
   List of users
-  </tfoot>
+  </tfoot> */}
           </table>
         </div>
       </div>

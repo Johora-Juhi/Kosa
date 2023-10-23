@@ -1,10 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import useTitle from "../../../hooks/useTitle";
+import EditingBlogModal from "./editingBlogModal/EditingBlogModal";
 
 const AllBlogs = () => {
   useTitle('Blogs');
+
+  const [editBlog, setEditBlog] = useState([]);
+
 
   const { data: blogs = [], refetch } = useQuery({
     queryKey: ["blogs"],
@@ -30,14 +34,14 @@ const AllBlogs = () => {
           Swal.fire({
             position: "center-center",
             icon: "success",
-            title: "User Removed",
+            title: "Blog Removed",
             showConfirmButton: false,
             timer: 2000,
           });
         }
       });
   };
-
+  console.log(editBlog);
   return (
     <>
       <div className="container mx-auto mt-4">
@@ -82,15 +86,27 @@ const AllBlogs = () => {
                   <td>{blog._id}</td>
                   <td>
                     <button
-                      // data-bs-toggle="modal"
-                      // data-bs-target="#exampleModal"
-                      // onClick={() => { handleEditUser(blog) }}
+                      data-bs-toggle="modal"
+                      data-bs-target="#blogEditModal"
+                      // blog={blog}
+                      onClick={() => { setEditBlog(blog) }}
                       style={{ backgroundColor: "#000196" }}
-                      // type="button"
+                      type="button"
                       className="btn btn-sm text-white py-0"
                     >
                       Make Change
                     </button>
+                    {
+                      
+            editBlog &&
+           (
+             <EditingBlogModal
+            blog={editBlog}
+            setEditBlog={setEditBlog}
+            refetch = {refetch}
+            ></EditingBlogModal>
+            )
+          }
                   </td>
                   <td>
                     <button

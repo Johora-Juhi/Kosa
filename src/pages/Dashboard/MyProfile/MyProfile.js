@@ -38,8 +38,8 @@ const MyProfile = () => {
   });
 
   const selectedCountry = profile.country;
-  const selectCountry = () => {
-    var selectElement = document.getElementById("inputState");
+  const selectCountry = async () => {
+    var selectElement = await document.getElementById("inputState");
 
     const options = selectElement.getElementsByTagName("option");
     for (let i = 0; i < options.length; i++) {
@@ -49,7 +49,7 @@ const MyProfile = () => {
       }
     }
   };
-  setTimeout(selectCountry, 2000);
+  setTimeout(selectCountry, 100);
 
 
   const updateprofile = (event) => {

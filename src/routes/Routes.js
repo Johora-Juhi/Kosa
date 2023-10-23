@@ -19,6 +19,8 @@ import MyComments from "../pages/Dashboard/MyComments/MyComments";
 import ShopComponents from "../pages/Shop/ShopComponents/ShopComponents";
 import CartComponents from "../pages/Cart/Cart Components/CartComponents";
 import CheckoutComponents from "../pages/Checkout/CheckoutComponents/CheckoutComponents";
+import CommingSoon from "../components/shared/CommingSoon/CommingSoon";
+import Check from "../pages/Dashboard/AllBlogs/Check";
 
 const routes = createBrowserRouter([
   {
@@ -30,8 +32,16 @@ const routes = createBrowserRouter([
         element: <HomeComponents></HomeComponents>,
       },
       {
+        path: "/check",
+        element: <Check></Check>,
+      },
+      {
         path: "/about",
         element: <AboutComponents></AboutComponents>,
+      },
+      {
+        path: "/commingSoon",
+        element: <CommingSoon></CommingSoon>,
       },
       {
         path: "/shop",
