@@ -45,8 +45,8 @@ const EditingBlogModal = ({ blog, setEditBlog, refetch }) => {
       today,
     };
 
-    // fetch(`https://hair-saloon-server.vercel.app/blog/${_id}`{
-    fetch(`http://localhost:5000/blog/${_id}`, {
+    fetch(`https://hair-saloon-server.vercel.app/blog/${_id}`, {
+    // fetch(`http://localhost:5000/blog/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

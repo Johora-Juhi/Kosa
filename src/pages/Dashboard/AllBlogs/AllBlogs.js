@@ -41,7 +41,6 @@ const AllBlogs = () => {
         }
       });
   };
-  console.log(editBlog);
   return (
     <>
       <div className="container mx-auto mt-4">
