@@ -4,7 +4,6 @@ import useTitle from "../../../hooks/useTitle";
 import "./Myprofile.css";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
-import { toast } from "react-hot-toast";
 import { isValidPhoneNumber, isValidNumberForRegion } from "libphonenumber-js";
 import { postcodeValidator } from "postcode-validator";
 import Loading from "../../../components/loading/Loading";
@@ -210,6 +209,17 @@ const MyProfile = () => {
       setErrors(prevErrors => ({ ...prevErrors, [id]: '' }));
     }
   };
+  const changeCountry = (id, hasError) => {
+    const element = document.getElementById(id);
+    if (hasError) {
+      element.classList.add('error-input');
+    } else {
+      element.classList.remove('error-input');
+      changeBorder('phone');
+      changeBorder('postcode')
+      setErrors(prevErrors => ({ ...prevErrors, [id]: '' }));
+    }
+  };
 
   return (
     <div className="container mx-auto">
@@ -367,7 +377,7 @@ const MyProfile = () => {
                 id="inputState"
                 className="col-10 form-select d-inline border-0 outline-0"
                 
-                onFocus={() => changeBorder("country",false)}
+                onChange={(e) => changeCountry("country",false)}
               >
                 <option value={''}>Country</option>
                 {country.sort((a, b) => a.name.common.localeCompare(b.name.common)).map((country) => (
