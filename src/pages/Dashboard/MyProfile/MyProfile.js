@@ -22,6 +22,12 @@ const MyProfile = () => {
       return data[0];
     },
   });
+  const [country, setCountry] = useState([]);
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((res) => res.json())
+      .then((data) => setCountry(data));
+  }, []);
 
   const selectedCountry = profile.country;
   const selectCountry = async () => {
@@ -37,15 +43,28 @@ const MyProfile = () => {
   };
   setTimeout(selectCountry, 100);
 
-  const [country, setCountry] = useState([]);
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((res) => res.json())
-      .then((data) => setCountry(data));
-  }, []);
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    streetAddress: '',
+    townCity: '',
+    postcode: '',
+    country: '',
+  });
 
   const updateprofile = (event) => {
     event.preventDefault();
+    const newErrors = {
+      name: '',
+      email: '',
+      phone: '',
+      streetAddress: '',
+      townCity: '',
+      postcode: '',
+      country: '',
+    };
+
     const form = event.target;
     const name = form.name.value;
     const streetAddress = form.streetAddress.value;
@@ -55,29 +74,32 @@ const MyProfile = () => {
     const phone = form.phone.value;
     const email = profile.email;
     const role = profile.role;
-
-    const emptyFields = [];
-
-    for (let i = 0; i < form.elements.length; i++) {
-      const element = form.elements[i];
-    
-      if (element.type !== 'submit' && element.value.trim() === '') {
-        // Add the name of the empty input field to the array
-        emptyFields.push(element.name);
-    
-        // Add a CSS class to highlight the empty input field
-        const parent = element.parentElement;
-        parent.classList.add('empty-input');
-        parent.classList.remove('changeBorder');
-      }
+    if (name.trim() === '') {
+      newErrors.name = 'Name is required';
+      changeBorder('name', true);
     }
-    
-    if (emptyFields.length > 0) {
-      // Display an error message for all empty input fields using toast notification
-      toast.error(`${emptyFields.join(', ')} ${emptyFields.length > 1 ? 'are' : 'is'} required`);
-    } else {
-      // Continue with form submission logic if all fields are filled
-      // ...
+    if (phone.trim() === '') {
+      newErrors.phone = 'Phone Number is required';
+      changeBorder('phone', true);
+    }
+    if (streetAddress.trim() === '') {
+      newErrors.streetAddress = 'Street Address is required';
+      changeBorder('streetAddress', true);
+    }
+    if (townCity.trim() === '') {
+      newErrors.townCity = 'Town/City is required';
+      changeBorder('townCity', true);
+    }
+    if (postcode.trim() === '') {
+      newErrors.postcode = 'Post Code is required';
+      changeBorder('postcode', true);
+    }
+    if (country.trim() === '') {
+      newErrors.country = 'Country is required';
+      changeBorder('country', true);
+    }
+    setErrors(newErrors);
+    if (Object.values(newErrors).every(error => error === ''))  {
       
       const updatedprofile = {
         name,
@@ -111,10 +133,19 @@ const MyProfile = () => {
           }
         });
     }
+   
   };
-  const changeBorder = (id) => {
-    document.getElementById(id).classList.add("changeBorder");
+  const changeBorder = (id, hasError) => {
+    const element = document.getElementById(id);
+    if (hasError) {
+      element.classList.add('error-input');
+    } else {
+      element.classList.remove('error-input');
+      setErrors(prevErrors => ({ ...prevErrors, [id]: '' }));
+      console.log(errors);
+    }
   };
+
   return (
     <div className="container mx-auto">
       <div className="d-flex border m-4 ">
@@ -140,10 +171,10 @@ const MyProfile = () => {
                 defaultValue={profile.name}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
-                onKeyUp={() => changeBorder("name")}
+                onKeyDown={() => changeBorder("name", false)}
               />
             </div>
-
+            <p style={{ color: "red", marginTop: "10px", fontSize: "13px", letterSpacing: "1.5px" }}>{errors.name }</p>
             <div
               className="form-control m-0 mb-3 row"
               style={{
@@ -178,11 +209,12 @@ const MyProfile = () => {
                 name="phone"
                 placeholder={profile.phone}
                 defaultValue={profile.phone}
-                onKeyUp={() => changeBorder("phone")}
+                onKeyUp={() => changeBorder("phone", false)}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
               />
             </div>
+            <p style={{ color: "red", marginTop: "10px", fontSize: "13px", letterSpacing: "1.5px" }}>{ errors.phone}</p>
 
             <div
               className="form-control m-0 mb-3 row"
@@ -202,9 +234,10 @@ const MyProfile = () => {
                 defaultValue={profile.streetAddress}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
-                onKeyUp={() => changeBorder("streetAddress")}
+                onKeyUp={() => changeBorder("streetAddress",false)}
               />
             </div>
+            <p style={{ color: "red", marginTop: "10px", fontSize: "13px", letterSpacing: "1.5px" }}>{ errors.streetAddress}</p>
 
             <div
               className="form-control m-0 mb-3 row"
@@ -224,9 +257,10 @@ const MyProfile = () => {
                 defaultValue={profile.townCity}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
-                onKeyUp={() => changeBorder("townCity")}
+                onKeyUp={() => changeBorder("townCity",false)}
               />
             </div>
+            <p style={{ color: "red", marginTop: "10px", fontSize: "13px", letterSpacing: "1.5px" }}>{ errors.townCity}</p>
 
             <div
               className="form-control m-0 mb-3 row"
@@ -246,9 +280,11 @@ const MyProfile = () => {
                 defaultValue={profile.postcode}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
-                onKeyUp={() => changeBorder("postcode")}
+                onKeyUp={() => changeBorder("postcode",false)}
               />
             </div>
+            <p style={{ color: "red", marginTop: "10px", fontSize: "13px", letterSpacing: "1.5px" }}>{ errors.postcode}</p>
+
             <div
               className="form-control m-0 mb-3 row"
               style={{
@@ -265,16 +301,18 @@ const MyProfile = () => {
                 style={{ padding: "10px", width: "83%", outline: "0" }}
                 id="inputState"
                 className="col-10 form-select d-inline border-0 outline-0"
-                onChange={() => changeBorder("country")}
+                defaultValue={profile.country}
+                onFocus={() => changeBorder("country",false)}
               >
                 <option value={''}>Country</option>
                 {country.map((country) => (
-                  <option defaultValue={profile.country} className="ms-4">
+                  <option className="ms-4">
                     {country.name.common}
                   </option>
                 ))}
               </select>
             </div>
+            <p style={{ color: "red", marginTop: "10px", fontSize: "13px", letterSpacing: "1.5px" }}>{ errors.country}</p>
 
             <input
               className=" bg-black text-white px-5 py-2 rounded"

@@ -15,7 +15,7 @@
     font-size: 100px;
     font-weight: 600;
 }
-.empty-input {
+.error-input {
     border-color: red;
   }
 .changeBorder {
