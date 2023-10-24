@@ -4,24 +4,10 @@ import useTitle from "../../../hooks/useTitle";
 import "./Myprofile.css";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
 const MyProfile = () => {
-  useTitle("Profile");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const [country, setCountry] = useState([]);
-
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((res) => res.json())
-      .then((data) => setCountry(data));
-  }, []);
+  useTitle('Profile')
   const { user } = useContext(AuthContext);
 
   const { data: profile = [], refetch } = useQuery({
@@ -51,6 +37,12 @@ const MyProfile = () => {
   };
   setTimeout(selectCountry, 100);
 
+  const [country, setCountry] = useState([]);
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((res) => res.json())
+      .then((data) => setCountry(data));
+  }, []);
 
   const updateprofile = (event) => {
     event.preventDefault();
@@ -64,12 +56,29 @@ const MyProfile = () => {
     const email = profile.email;
     const role = profile.role;
 
-    if (form.phone.value == "") {
-      document.getElementById("phone").classList.add("empty-input");
-      document.getElementById("phone").classList.remove("changeBorder");
-      toast.error("Email is required");
-      return;
+    const emptyFields = [];
+
+    for (let i = 0; i < form.elements.length; i++) {
+      const element = form.elements[i];
+    
+      if (element.type !== 'submit' && element.value.trim() === '') {
+        // Add the name of the empty input field to the array
+        emptyFields.push(element.name);
+    
+        // Add a CSS class to highlight the empty input field
+        const parent = element.parentElement;
+        parent.classList.add('empty-input');
+        parent.classList.remove('changeBorder');
+      }
+    }
+    
+    if (emptyFields.length > 0) {
+      // Display an error message for all empty input fields using toast notification
+      toast.error(`${emptyFields.join(', ')} ${emptyFields.length > 1 ? 'are' : 'is'} required`);
     } else {
+      // Continue with form submission logic if all fields are filled
+      // ...
+      
       const updatedprofile = {
         name,
         email,
@@ -98,6 +107,7 @@ const MyProfile = () => {
               showConfirmButton: false,
               timer: 2000,
             });
+            refetch();
           }
         });
     }
@@ -138,7 +148,6 @@ const MyProfile = () => {
               className="form-control m-0 mb-3 row"
               style={{
                 backgroundColor: "#fff",
-                border: "1px solid #e2e2e2",
                 padding: "10px 10px",
               }}
             >
@@ -179,9 +188,9 @@ const MyProfile = () => {
               className="form-control m-0 mb-3 row"
               style={{
                 backgroundColor: "#fff",
-                border: "1px solid #e2e2e2",
                 padding: "10px 10px",
               }}
+              id="streetAddress"
             >
               <label className="label p-0 col-2">
                 <span className=" label-text">Street address</span>
@@ -193,6 +202,7 @@ const MyProfile = () => {
                 defaultValue={profile.streetAddress}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
+                onKeyUp={() => changeBorder("streetAddress")}
               />
             </div>
 
@@ -200,9 +210,9 @@ const MyProfile = () => {
               className="form-control m-0 mb-3 row"
               style={{
                 backgroundColor: "#fff",
-                border: "1px solid #e2e2e2",
                 padding: "10px 10px",
               }}
+              id="townCity"
             >
               <label className="label p-0 col-2">
                 <span className=" label-text">Town/City</span>
@@ -214,7 +224,7 @@ const MyProfile = () => {
                 defaultValue={profile.townCity}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
-                {...register("townCity")}
+                onKeyUp={() => changeBorder("townCity")}
               />
             </div>
 
@@ -222,9 +232,9 @@ const MyProfile = () => {
               className="form-control m-0 mb-3 row"
               style={{
                 backgroundColor: "#fff",
-                border: "1px solid #e2e2e2",
                 padding: "10px 10px",
               }}
+              id="postcode"
             >
               <label className="label p-0 col-2">
                 <span className=" label-text">Post Code</span>
@@ -236,15 +246,16 @@ const MyProfile = () => {
                 defaultValue={profile.postcode}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
+                onKeyUp={() => changeBorder("postcode")}
               />
             </div>
             <div
               className="form-control m-0 mb-3 row"
               style={{
                 backgroundColor: "#fff",
-                border: "1px solid #e2e2e2",
                 padding: "0 0 0 10px ",
               }}
+              id="country"
             >
               <label className="label p-0 col-2">
                 <span className=" label-text">Country</span>
@@ -253,9 +264,10 @@ const MyProfile = () => {
                 name="country"
                 style={{ padding: "10px", width: "83%", outline: "0" }}
                 id="inputState"
-                class="col-10 form-select d-inline border-0 outline-0"
+                className="col-10 form-select d-inline border-0 outline-0"
+                onChange={() => changeBorder("country")}
               >
-                <option>Country</option>
+                <option value={''}>Country</option>
                 {country.map((country) => (
                   <option defaultValue={profile.country} className="ms-4">
                     {country.name.common}

@@ -20,7 +20,6 @@ const AllBlogs = () => {
   });
 
   const handleDetetingUser = (blog) => {
-    console.log(blog);
     fetch(`https://hair-saloon-server.vercel.app/blogs/${blog._id}`, {
       method: "DELETE",
       headers: {
@@ -123,11 +122,6 @@ const AllBlogs = () => {
           </table>
         </div>
       </div>
-      {/* {
-                <EditingBlogModal>
-                    blog={blog}
-                </EditingBlogModal>
-            } */}
     </>
   );
 };
