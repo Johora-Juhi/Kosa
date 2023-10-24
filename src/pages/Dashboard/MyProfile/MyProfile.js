@@ -7,12 +7,12 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { isValidPhoneNumber, isValidNumberForRegion } from "libphonenumber-js";
 import { postcodeValidator } from "postcode-validator";
+import Loading from "../../../components/loading/Loading";
 
 const MyProfile = () => {
   useTitle('Profile')
   const { user } = useContext(AuthContext);
-
-  const { data: profile = [], refetch } = useQuery({
+  const { data: profile = [], refetch, isLoading } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
       const res = await fetch(`https://hair-saloon-server.vercel.app/profile/${user?.email}`, {
@@ -24,27 +24,58 @@ const MyProfile = () => {
       return data[0];
     },
   });
-
   const [country, setCountry] = useState([]);
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
       .then((data) => setCountry(data));
   }, []);
-
-  const selectedCountry = profile.country;
-  const selectCountry = async () => {
-    var selectElement = await document.getElementById("inputState");
-
-    const options = selectElement.getElementsByTagName("option");
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].value === selectedCountry) {
-        options[i].selected = true;
-        break;
+  const [formValues, setFormValues] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    streetAddress: '',
+    townCity: '',
+    postcode: '',
+    country: '',
+  });
+  useEffect(() => {
+    if (!isLoading && profile) {
+      // Set initial form values when profile data is available
+      setFormValues({
+        name: profile.name || '',
+        email: profile.email || '',
+        phone: profile.phone || '',
+        streetAddress: profile.streetAddress || '',
+        townCity: profile.townCity || '',
+        postcode: profile.postcode || '',
+        country: profile.country || '',
+      });
+      
+      // Select the correct country in the dropdown
+      var selectElement = document.getElementById("inputState");
+      const options = selectElement.getElementsByTagName("option");
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].value === profile.country) {
+          options[i].selected = true;
+          break;
+        }
       }
     }
-  };
-  setTimeout(selectCountry, 100);
+  }, [isLoading, profile]);
+  // const selectedCountry = profile.country;
+  // const selectCountry = async () => {
+  //   var selectElement = await document.getElementById("inputState");
+
+  //   const options = selectElement.getElementsByTagName("option");
+  //   for (let i = 0; i < options.length; i++) {
+  //     if (options[i].value === selectedCountry) {
+  //       options[i].selected = true;
+  //       break;
+  //     }
+  //   }
+  // };
+  // setTimeout(selectCountry, 100);
 
   const [errors, setErrors] = useState({
     name: '',
@@ -55,7 +86,9 @@ const MyProfile = () => {
     postcode: '',
     country: '',
   });
-
+  if (isLoading) {
+    return <Loading></Loading>;
+  };
   const updateprofile = async (event) => {
     event.preventDefault();
     const newErrors = {
@@ -199,8 +232,8 @@ const MyProfile = () => {
               <input
                 type="text"
                 name="name"
-                placeholder={profile.name}
-                defaultValue={profile.name}
+                placeholder={formValues.name}
+                defaultValue={formValues.name}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
                 onKeyDown={() => changeBorder("name", false)}
@@ -220,8 +253,8 @@ const MyProfile = () => {
               <input
                 type="email"
                 name="email"
-                placeholder={profile.email}
-                defaultValue={profile.email}
+                placeholder={formValues.email}
+                defaultValue={formValues.email}
                 disabled
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
@@ -239,8 +272,8 @@ const MyProfile = () => {
               <input
                 type="text"
                 name="phone"
-                placeholder={profile.phone}
-                defaultValue={profile.phone}
+                placeholder={formValues.phone}
+                defaultValue={formValues.phone}
                 onKeyUp={() => changeBorder("phone", false)}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
@@ -262,8 +295,8 @@ const MyProfile = () => {
               <input
                 type="text"
                 name="streetAddress"
-                placeholder={profile.streetAddress}
-                defaultValue={profile.streetAddress}
+                placeholder={formValues.streetAddress}
+                defaultValue={formValues.streetAddress}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
                 onKeyUp={() => changeBorder("streetAddress",false)}
@@ -285,8 +318,8 @@ const MyProfile = () => {
               <input
                 type="text"
                 name="townCity"
-                placeholder={profile.townCity}
-                defaultValue={profile.townCity}
+                placeholder={formValues.townCity}
+                defaultValue={formValues.townCity}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
                 onKeyUp={() => changeBorder("townCity",false)}
@@ -308,8 +341,8 @@ const MyProfile = () => {
               <input
                 type="text"
                 name="postcode"
-                placeholder={profile.postcode}
-                defaultValue={profile.postcode}
+                placeholder={formValues.postcode}
+                defaultValue={formValues.postcode}
                 className="col-10 border-0 outline-0"
                 style={{ outline: "0" }}
                 onKeyUp={() => changeBorder("postcode",false)}
