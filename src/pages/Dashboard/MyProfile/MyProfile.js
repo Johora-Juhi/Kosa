@@ -5,6 +5,8 @@ import "./Myprofile.css";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+import { isValidPhoneNumber, isValidNumberForRegion } from "libphonenumber-js";
+import { postcodeValidator } from "postcode-validator";
 
 const MyProfile = () => {
   useTitle('Profile')
@@ -22,6 +24,7 @@ const MyProfile = () => {
       return data[0];
     },
   });
+
   const [country, setCountry] = useState([]);
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -53,7 +56,7 @@ const MyProfile = () => {
     country: '',
   });
 
-  const updateprofile = (event) => {
+  const updateprofile = async (event) => {
     event.preventDefault();
     const newErrors = {
       name: '',
@@ -81,7 +84,18 @@ const MyProfile = () => {
     if (phone.trim() === '') {
       newErrors.phone = 'Phone Number is required';
       changeBorder('phone', true);
-    }
+    } else {
+      try {
+        const isValid = isValidNumberForRegion(phone, country); // 'ZZ' is the country code for unknown region
+        if (!isValid) {
+          newErrors.phone = 'Invalid phone number, Must include country code';
+          changeBorder('phone', true);
+        }
+      }
+      catch (error) {
+        console.error(error.message);
+      }
+    };   
     if (streetAddress.trim() === '') {
       newErrors.streetAddress = 'Street Address is required';
       changeBorder('streetAddress', true);
@@ -93,7 +107,21 @@ const MyProfile = () => {
     if (postcode.trim() === '') {
       newErrors.postcode = 'Post Code is required';
       changeBorder('postcode', true);
-    }
+    }else {
+      try {
+        const isValid = postcodeValidator(postcode, country); // returns true for valid, throws error for invalid
+    
+        if (!isValid) {
+          newErrors.postcode = 'Invalid Post code';
+          changeBorder('postcode', true);
+        }
+      } catch (error) {
+        // Handle the invalid country code error here
+        console.error(error.message); // Log the error message for reference
+        // Code to push data to the database even with invalid country code
+        // ...
+      }
+    };   
     if (country.trim() === '') {
       newErrors.country = 'Country is required';
       changeBorder('country', true);
@@ -111,7 +139,7 @@ const MyProfile = () => {
         country,
         role,
       };
-
+      
       fetch(`https://hair-saloon-server.vercel.app/users/${user?.email}`, {
         method: "PUT",
         headers: {
@@ -130,6 +158,11 @@ const MyProfile = () => {
               timer: 2000,
             });
             refetch();
+            const input = document.getElementsByTagName('input');
+            for (let i = 0; i < input.length; i++){
+              const parent = input[i].parentElement;
+              parent.classList.remove('error-input');
+            }
           }
         });
     }
@@ -142,7 +175,6 @@ const MyProfile = () => {
     } else {
       element.classList.remove('error-input');
       setErrors(prevErrors => ({ ...prevErrors, [id]: '' }));
-      console.log(errors);
     }
   };
 
@@ -162,7 +194,7 @@ const MyProfile = () => {
           <form className="pb-5 px-4 rounded" onSubmit={updateprofile}>
             <div className="form-control m-0 mb-3 row" id="name" style={{}}>
               <label className="label p-0 col-2">
-                <span className=" label-text">Name </span>
+                <span className=" label-text">Name</span>
               </label>
               <input
                 type="text"
@@ -301,19 +333,19 @@ const MyProfile = () => {
                 style={{ padding: "10px", width: "83%", outline: "0" }}
                 id="inputState"
                 className="col-10 form-select d-inline border-0 outline-0"
-                defaultValue={profile.country}
+                
                 onFocus={() => changeBorder("country",false)}
               >
                 <option value={''}>Country</option>
-                {country.map((country) => (
-                  <option className="ms-4">
+                {country.sort((a, b) => a.name.common.localeCompare(b.name.common)).map((country) => (
+                  <option value={country.cca2} className="ms-4">
                     {country.name.common}
                   </option>
                 ))}
               </select>
             </div>
-            <p style={{ color: "red", marginTop: "10px", fontSize: "13px", letterSpacing: "1.5px" }}>{ errors.country}</p>
-
+            <p style={{ color: "red", marginTop: "10px", fontSize: "13px", letterSpacing: "1.5px" }}>{errors.country}</p>
+            
             <input
               className=" bg-black text-white px-5 py-2 rounded"
               value="Save changes"
