@@ -36,11 +36,29 @@ const EditingBlogModal = ({ blog, setEditBlog, refetch }) => {
     }
     const today = format(new Date(), "PP");
     const form = event.target;
+    let newBlogTilte = form.blogTitle.value
+    let newDescription = form.description.value
+    let newQuote = form.quote.value
+    let newTag = form.tag.value
+    
+    if (newBlogTilte.trim() === '') {
+      newBlogTilte = blogTitle;
+    }
+    if (newDescription.trim() === '') {
+      newDescription = description;
+    }
+    if (newQuote.trim() === '') {
+      newQuote = quote;
+    }
+    if (newTag.trim() === '') {
+      newTag = tag;
+    }
+    
     const updatedBlog = {
-      blogTitle: form.blogTitle.value,
-      description: form.description.value,
-      quote: form.quote.value,
-      tag: form.tag.value,
+      blogTitle: newBlogTilte,
+      description: newDescription,
+      quote: newQuote,
+      tag: newTag,
       image: newImage,
       today,
     };
@@ -107,6 +125,7 @@ const EditingBlogModal = ({ blog, setEditBlog, refetch }) => {
                 <input
                   name="blogTitle"
                   defaultValue={blogTitle}
+                  placeholder={blogTitle}
                   type="text"
                   className="col-11 border-0 outline-0 "
                   style={{ outline: "0" }}
@@ -123,6 +142,7 @@ const EditingBlogModal = ({ blog, setEditBlog, refetch }) => {
                 <input
                   name="tag"
                   defaultValue={tag}
+                  placeholder={tag}
                   type="text"
                   className="col-11 border-0 outline-0 "
                   style={{ outline: "0" }}
@@ -139,6 +159,7 @@ const EditingBlogModal = ({ blog, setEditBlog, refetch }) => {
                 <input
                   name="quote"
                   defaultValue={quote}
+                  placeholder={quote}
                   type="text"
                   className="col-11 border-0 outline-0 "
                   style={{ outline: "0" }}
@@ -155,6 +176,7 @@ const EditingBlogModal = ({ blog, setEditBlog, refetch }) => {
                 <textarea
                   name="description"
                   defaultValue={description}
+                  placeholder={description}
                   className="textarea outline-0  border-0 w-100 col-11 p-0"
                   style={{ outline: "0" }}
                 ></textarea>

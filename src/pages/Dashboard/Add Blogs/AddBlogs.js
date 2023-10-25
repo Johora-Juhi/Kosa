@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -61,6 +61,7 @@ const AddBlogs = () => {
         }
       });
   };
+
   return (
     <div className="container mx-auto">
       <div className="mt-4">
@@ -78,8 +79,9 @@ const AddBlogs = () => {
           onSubmit={handleSubmit(handleAddBlog)}
         >
           <div
-            className="form-control m-0 mb-3 row "
+            className="form-control position-relative m-0 mb-3 row "
             style={{ border: "1px solid #e2e2e2" }}
+            id="title"
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Blog Title</span>
@@ -88,13 +90,32 @@ const AddBlogs = () => {
               type="text"
               className="col-11 border-0 outline-0 "
               style={{ outline: "0" }}
-              {...register("blogTitle")}
+              {...register("blogTitle",
+                {
+                  required: "Blog Title is required"
+                })}
             />
           </div>
 
+          {Object.keys(errors).length ? (
+            <>
+              {errors.blogTitle ? (
+                <>
+                  {document.getElementById('title').classList.add('error-input')}
+                  <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none" }}>{errors.blogTitle?.message}</p>
+                </>
+              ) : (
+                <>
+                  {!errors.blogTitle && document.getElementById('title').classList.remove('error-input')}
+                </>
+              )}
+            </>
+          ) : <></>}
+
           <div
-            className="form-control m-0 mb-3 row "
+            className="form-control position-relative m-0 mb-3 row "
             style={{ border: "1px solid #e2e2e2" }}
+            id="blogtag"
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Tag</span>
@@ -103,13 +124,32 @@ const AddBlogs = () => {
               type="text"
               className="col-11 border-0 outline-0 "
               style={{ outline: "0" }}
-              {...register("tag")}
+              {...register("tag",
+                {
+                  required: "Tag is required"
+                })}
             />
           </div>
 
+          {Object.keys(errors).length ? (
+            <>
+              {errors.tag ? (
+                <>
+                  {document.getElementById('blogtag').classList.add('error-input')}
+                  <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none" }}>{errors.tag?.message}</p>
+                </>
+              ) : (
+                <>
+                  {!errors.tag && document.getElementById('blogtag').classList.remove('error-input')}
+                </>
+              )}
+            </>
+          ) : <></>}
+
           <div
-            className="form-control m-0 mb-3 row "
+            className="form-control position-relative m-0 mb-3 row "
             style={{ border: "1px solid #e2e2e2" }}
+            id="quote"
           >
             <label className="label p-0 col-1">
               <span className=" label-text">Quote</span>
@@ -118,13 +158,33 @@ const AddBlogs = () => {
               type="text"
               className="col-11 border-0 outline-0 "
               style={{ outline: "0" }}
-              {...register("quote")}
+              {...register("quote",
+                {
+                  required: "Quote is required"
+                })}
             />
+
           </div>
 
+          {Object.keys(errors).length ? (
+            <>
+              {errors.quote ? (
+                <>
+                  {document.getElementById('quote').classList.add('error-input')}
+                  <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none" }}>{errors.quote?.message}</p>
+                </>
+              ) : (
+                <>
+                  {!errors.quote && document.getElementById('quote').classList.remove('error-input')}
+                </>
+              )}
+            </>
+          ) : <></>}
+
           <div
-            className="form-control m-0  row mb-3"
+            className="form-control position-relative m-0  row mb-3"
             style={{ border: "1px solid #e2e2e2" }}
+            id="desc"
           >
             <label className="label col-1 p-0">
               <span className="label-text">Description</span>
@@ -132,13 +192,32 @@ const AddBlogs = () => {
             <textarea
               className="textarea outline-0  border-0 w-100 col-11 p-0"
               style={{ outline: "0" }}
-              {...register("description")}
+              {...register("description",
+                {
+                  required: "Descriptio of the blog is required"
+                })}
             ></textarea>
+
           </div>
+          
+          {Object.keys(errors).length ? (
+            <>
+              {errors.description ? (
+                <>
+                  {document.getElementById('desc').classList.add('error-input')}
+                  <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none" }}>{errors.description?.message}</p>
+                </>
+              ) : (
+                <>
+                  {!errors.description && document.getElementById('desc').classList.remove('error-input')}
+                </>
+              )}
+            </>
+          ) : <></>}
 
           <div
             style={{ border: "1px solid #e2e2e2" }}
-            className="form-control p-0"
+            className="form-control position-relative p-0"
           >
             <input
               style={{
@@ -146,12 +225,12 @@ const AddBlogs = () => {
               }}
               type="file"
               {...register("image", {
-                required: "Photo is Required",
+                required: "Blog Image is required",
               })}
-              className="form-control form-control-md "
+              className="form-control position-relative form-control-md "
             />
-            {errors.img && <p className="text-red-500">{errors.img.message}</p>}
           </div>
+          {errors.image && <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none", marginTop:"16px" }}>{errors.image?.message}</p>}
 
           <input className="mt-3 bg-black text-white px-5 py-2 rounded" value="Add Blog" type="submit" />
         </form>

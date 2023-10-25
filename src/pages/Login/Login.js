@@ -41,7 +41,7 @@ const Login = () => {
                 <h1>Login</h1>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control border-0 w-full max-w-xs p-0 mb-2 mt-1">
-                        <label className="label mb-1"> <span className="label-text">Username or email address <span style={{ color: 'red' }} >*</span> </span></label> <br />
+                        <label className="label mb-1"> <span className="label-text">Email address <span style={{ color: 'red' }} >*</span> </span></label> <br />
                         <input
                             style={{ width: '100%', border: '1px solid #d7d7d7', outline: 'none' }}
                             type="text"

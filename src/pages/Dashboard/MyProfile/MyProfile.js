@@ -62,19 +62,6 @@ const MyProfile = () => {
       }
     }
   }, [isLoading, profile]);
-  // const selectedCountry = profile.country;
-  // const selectCountry = async () => {
-  //   var selectElement = await document.getElementById("inputState");
-
-  //   const options = selectElement.getElementsByTagName("option");
-  //   for (let i = 0; i < options.length; i++) {
-  //     if (options[i].value === selectedCountry) {
-  //       options[i].selected = true;
-  //       break;
-  //     }
-  //   }
-  // };
-  // setTimeout(selectCountry, 100);
 
   const [errors, setErrors] = useState({
     name: '',

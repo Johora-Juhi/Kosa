@@ -16,8 +16,8 @@
     font-weight: 600;
 }
 .error-input {
-    border-color: red;
+    border-color: red!important;
   }
 .changeBorder {
-    border-color: #e2e2e2;
+    border-color: #e2e2e2!important;
   }
