@@ -5,6 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
 import './Login.css';
 import useTitle from '../../hooks/useTitle';
+import { useQuery } from '@tanstack/react-query';
 
 const Login = () => {
     useTitle('Login');
@@ -24,15 +25,29 @@ const Login = () => {
     }
 
     const handleLogin = data => {
-        signIn(data.email, data.password)
-            .then(result => {
-                const user = result.user;
-                setLoginUserEmail(data.email);
-            })
-            .catch(error => {
-                setLoginError(error.message);
-            })
-
+        fetch(`https://hair-saloon-server.vercel.app/profile/${data.email}`, {
+            method: "GET",
+            headers: {
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((user) => {
+                if (user.length) {
+                    signIn(data.email, data.password)
+                        .then(result => {
+                            const user = result.user;
+                            setLoginUserEmail(data.email);
+                        })
+                        .catch(error => {
+                            setLoginError(error.message);
+                        })
+            } 
+                else {
+                    setLoginError('Firebase: Error (auth/user-not-found).');
+                }
+            }
+            );
     }
 
     return (
@@ -68,7 +83,7 @@ const Login = () => {
                     </div>
                 </form>
                 <div className='mt-3'>
-                    <Link style={{ textDecoration: 'none', color: '#d4a977' }} to="/register">New User? <span style={{color: 'blue', textDecoration: 'underline'}}>Please Register</span> </Link>
+                    <Link style={{ textDecoration: 'none', color: '#d4a977' }} to="/register">New User? <span style={{ color: 'blue', textDecoration: 'underline' }}>Please Register</span> </Link>
                 </div>
             </div>
         </div>

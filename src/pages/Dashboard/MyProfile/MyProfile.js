@@ -212,9 +212,9 @@ const MyProfile = () => {
     <div className="container mx-auto">
       <div className="d-flex border m-4 ">
         <div className="w-25 p-5 border-end">
-          <div className="imageIcon">{user?.displayName.charAt(0)}</div>
+          <div className="imageIcon text-capitalize">{user?.displayName.charAt(0)}</div>
           <p
-            className="text-center fw-bold fs-4 pt-3"
+            className="text-center fw-bold fs-4 pt-3 text-capitalize"
             style={{ letterSpacing: "1px" }}
           >
             {user?.displayName}

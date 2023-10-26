@@ -1,0 +1,18 @@
+.page {
+  border: none;
+  background: none;
+  width: 26px !important;
+  height: 26px;
+  padding: 0px !important;
+  font-size: 14px;
+}
+.active {
+  width: 26px !important;
+  height: 26px;
+  padding: 0px !important;
+  font-size: 14px;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  background-color: #005967;
+}

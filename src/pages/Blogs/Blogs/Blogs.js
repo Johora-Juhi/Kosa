@@ -30,8 +30,7 @@ const Blogs = () => {
             
             {[...Array(pages).keys()].map((number) => (
               <button
-                key={number}
-                className={page === number ? "selected" : ""}
+                
                 onClick={() => setPage(number)}
               >
                 {number}

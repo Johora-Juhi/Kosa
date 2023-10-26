@@ -194,7 +194,7 @@ const AddBlogs = () => {
               style={{ outline: "0" }}
               {...register("description",
                 {
-                  required: "Descriptio of the blog is required"
+                  required: "Description of the blog is required"
                 })}
             ></textarea>
 

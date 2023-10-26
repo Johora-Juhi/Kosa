@@ -36,11 +36,12 @@ const EditingBlogModal = ({ blog, setEditBlog, refetch }) => {
     }
     const today = format(new Date(), "PP");
     const form = event.target;
+    
     let newBlogTilte = form.blogTitle.value
     let newDescription = form.description.value
     let newQuote = form.quote.value
     let newTag = form.tag.value
-    
+
     if (newBlogTilte.trim() === '') {
       newBlogTilte = blogTitle;
     }

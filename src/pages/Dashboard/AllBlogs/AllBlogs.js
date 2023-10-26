@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import useTitle from "../../../hooks/useTitle";
 import EditingBlogModal from "./editingBlogModal/EditingBlogModal";
+import './AllBlog.css'
 
 const AllBlogs = () => {
   useTitle('Blogs');
+
 
   const [editBlog, setEditBlog] = useState([]);
 
@@ -18,6 +20,31 @@ const AllBlogs = () => {
       return data;
     },
   });
+
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [blogsPerPage,setBlogsPerPage] = useState(5); // Number of blogs to display per page
+
+  // Calculate index of the last blog on the current page
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  // Calculate index of the first blog on the current page
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+
+  // Slice the array of blogs to display only the blogs for the current page
+  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+  // Logic for displaying page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(blogs.length / blogsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+
+
+
 
   const handleDetetingUser = (blog) => {
     fetch(`https://hair-saloon-server.vercel.app/blogs/${blog._id}`, {
@@ -40,6 +67,11 @@ const AllBlogs = () => {
         }
       });
   };
+  const handleSelectChange = (event) => {
+    const selectedValue = parseInt(event.target.value, 10); // Parse the selected value to an integer
+    setBlogsPerPage(selectedValue);
+    setCurrentPage(1); // Reset current page to 1 when the number of blogs per page is changed
+  };
   return (
     <>
       <div className="container mx-auto mt-4">
@@ -49,11 +81,11 @@ const AllBlogs = () => {
         >
           Blogs
         </h1>
-        <div className="table-responsive">
-          <table className="table table-striped border rounded">
+        <div className="table-responsive border">
+          <table className="table table-striped rounded mb-0">
             <thead>
               <tr>
-                <th className="text-dark" scope="col"></th>
+                <th className="text-dark" scope="col">#</th>
                 <th className="text-dark" scope="col">
                   Title
                 </th>
@@ -75,7 +107,7 @@ const AllBlogs = () => {
               </tr>
             </thead>
             <tbody>
-              {blogs.map((blog, i) => (
+              {currentBlogs.map((blog, i) => (
                 <tr key={blog._id}>
                   <th scope="row">{i + 1}</th>
                   <td>{blog.blogTitle}</td>
@@ -88,23 +120,23 @@ const AllBlogs = () => {
                       data-bs-target="#blogEditModal"
                       // blog={blog}
                       onClick={() => { setEditBlog(blog) }}
-                      style={{ backgroundColor: "#000196" }}
+                      style={{ backgroundColor: "#005967" }}
                       type="button"
                       className="btn btn-sm text-white py-0"
                     >
                       Make Change
                     </button>
                     {
-                      
-            editBlog &&
-           (
-             <EditingBlogModal
-            blog={editBlog}
-            setEditBlog={setEditBlog}
-            refetch = {refetch}
-            ></EditingBlogModal>
-            )
-          }
+
+                      editBlog &&
+                      (
+                        <EditingBlogModal
+                          blog={editBlog}
+                          setEditBlog={setEditBlog}
+                          refetch={refetch}
+                        ></EditingBlogModal>
+                      )
+                    }
                   </td>
                   <td>
                     <button
@@ -119,7 +151,31 @@ const AllBlogs = () => {
                 </tr>
               ))}
             </tbody>
+
           </table>
+          {/* <!-- ======= Footer tools ======= --> */}
+          <div class="footer-tools px-4 py-3" style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+            <div class="list-items">
+              Show 
+              <select onChange={handleSelectChange} style={{marginLeft:"7px",marginRight:"7px", border:"2px solid #005967"}}>
+                <option value="5" selected>5</option>
+                <option value="10" >10</option>
+                <option value="2" >2</option>
+                <option value="15">15</option>
+              </select>
+              entries
+            </div>
+
+            <div class="pagination mb-0">
+                {pageNumbers.map((number) => (
+                    <button onClick={() => paginate(number)} key={number}
+                className={currentPage === number ? "active" : "page" }>
+                      {number}
+                    </button>
+                ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </>

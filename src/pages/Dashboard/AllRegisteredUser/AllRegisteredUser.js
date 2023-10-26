@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import { FaCheckCircle } from "react-icons/fa";
 import Loading from "../../../components/loading/Loading";
 import useTitle from "../../../hooks/useTitle";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const AllRegisteredUser = () => {
   useTitle('Users');
@@ -109,7 +111,7 @@ const AllRegisteredUser = () => {
               {users.map((user, i) => (
                 <tr key={user._id}>
                   <th scope="row">{i + 1}</th>
-                  <td>{user.name}</td>
+                  <td className="text-capitalize">{user.name}</td>
                   <td>{user.email}</td>
                   <td>
                     <button
@@ -142,20 +144,36 @@ const AllRegisteredUser = () => {
                   </td>
                   <td>
                     <button
-                      onClick={() => handleDetetingUser(user)}
+                      data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      // onClick={() => handleDetetingUser(user)}
                       style={{ backgroundColor: "red" }}
                       type="button"
                       className="btn btn-sm text-white py-0"
                     >
                       Delete
                     </button>
+        {/* <!-- Modal --> */}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content p-2">
+      <div class="modal-header border-0">
+                            <p class="" style={{fontSize:"1.125rem", lineHeight:"1.75rem", fontWeight:"700",letterSpacing:"0px", marginBottom:"0",color:"rgb(51, 51, 51)"}}                      id="exampleModalLabel">Are you sure you want to delete!</p>
+        <button type="button" class="btn-xs btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="" style={{fontSize:"16px", lineHeight:"1.75rem", fontWeight:"500",letterSpacing:"0px",paddingLeft:"16px",paddingBottom:"32px",color:"rgb(51, 51, 51)"}}>
+                            If you delete {user.name } it can not be undone!
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onClick={() => handleDetetingUser(user)}>Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
                   </td>
                 </tr>
               ))}
             </tbody>
-            {/* <tfoot>
-  List of users
-  </tfoot> */}
           </table>
         </div>
       </div>

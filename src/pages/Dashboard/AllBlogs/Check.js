@@ -46,6 +46,7 @@ const Check = () => {
   };
   return (
     <div>
+      
       <form
         className=" py-5 px-4 rounded"
         style={{

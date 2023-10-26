@@ -42,7 +42,7 @@ const Header = () => {
                                 user?.uid ?
                                     <>
                                         <div className="dropdown bg-white">
-                                            <button className="bookBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button className="bookBtn text-capitalize" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {user?.displayName}
                                             </button>
                                             <ul className="dropdown-menu py-0 rounded-none">
