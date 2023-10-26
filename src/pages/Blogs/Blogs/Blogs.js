@@ -3,6 +3,7 @@ import Blog from "../Blog/Blog";
 import './Blogs.css'
 
 const Blogs = () => {
+
   const [blogs, setBlogs] = useState([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
@@ -15,10 +16,15 @@ const Blogs = () => {
       .then((data) => {
         setBlogs(data.blogs);
         setCount(data.count);
+          window.scrollTo(0, 0)
       });
   }, [page, size]);
   const pages = Math.ceil(count / size);
-
+  const handleSelectChange = (event) => {
+    const selectedValue = parseInt(event.target.value, 10); // Parse the selected value to an integer
+    setSize(selectedValue);
+    setPage(0); // Reset current page to 1 when the number of blogs per page is changed
+  };
   return (
     <div className="container mx-auto py-5">
       <div className="row">
@@ -26,26 +32,7 @@ const Blogs = () => {
           {blogs?.map((blog) => (
             <Blog key={blog._id} blog={blog}></Blog>
           ))}
-          <div className="pagination d-flex justify-content-center ">
-            
-            {[...Array(pages).keys()].map((number) => (
-              <button
-                
-                onClick={() => setPage(number)}
-              >
-                {number}
-              </button>
-            ))}
-            <select onChange={(event) => setSize(event.target.value)}>
-              
-              <option value="5" selected>5</option>
-              <option value="10">
-                10
-              </option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
+          
         </div>
         <div className="col-3 ps-4">
           <h1
@@ -81,6 +68,27 @@ const Blogs = () => {
           ))}
         </div>
       </div>
+      <div className="pagination d-flex justify-content-center ">
+            
+            {[...Array(pages).keys()].map((number) => (
+              <button
+                key={number}
+                className={page === number ? "selected" : ""}
+                onClick={() => setPage(number)}
+              >
+                {number+1}
+              </button>
+            ))}
+            <select onChange={handleSelectChange}>
+              
+              <option value="5" selected>5</option>
+              <option value="10">
+                10
+              </option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </div>
     </div>
   );
 };

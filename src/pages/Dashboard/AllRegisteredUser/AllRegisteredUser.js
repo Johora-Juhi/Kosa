@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { FaCheckCircle } from "react-icons/fa";
 import Loading from "../../../components/loading/Loading";
 import useTitle from "../../../hooks/useTitle";
-import { useContext } from "react";
-import { AuthContext } from "../../../contexts/AuthProvider";
+import '../AllBlogs/AllBlog.css'
 
 const AllRegisteredUser = () => {
   useTitle('Users');
@@ -23,6 +22,24 @@ const AllRegisteredUser = () => {
     },
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage, setusersPerPage] = useState(5); // Number of users to display per page
+
+  // Calculate index of the last blog on the current page
+  const indexOfLastBlog = currentPage * usersPerPage;
+  // Calculate index of the first blog on the current page
+  const indexOfFirstBlog = indexOfLastBlog - usersPerPage;
+
+  // Slice the array of users to display only the users for the current page
+  const currentusers = users.slice(indexOfFirstBlog, indexOfLastBlog);
+
+  // Logic for displaying page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(users.length / usersPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const handleMakeAdmin = (id) => {
     fetch(`https://hair-saloon-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
@@ -68,7 +85,11 @@ const AllRegisteredUser = () => {
         }
       });
   };
-
+  const handleSelectChange = (event) => {
+    const selectedValue = parseInt(event.target.value, 10); // Parse the selected value to an integer
+    setusersPerPage(selectedValue);
+    setCurrentPage(1); // Reset current page to 1 when the number of blogs per page is changed
+  };
   if (loading) {
     return <Loading></Loading>;
   }
@@ -82,9 +103,9 @@ const AllRegisteredUser = () => {
         >
           All Users
         </h1>
-        <div className="table-responsive">
-          <table className="table table-striped border rounded">
-          {/* <caption>List of users</caption> */}
+        <div className="table-responsive border">
+          <table className="table table-striped rounded">
+            {/* <caption>List of users</caption> */}
             <thead>
               <tr>
                 <th className="text-dark" scope="col">
@@ -108,7 +129,7 @@ const AllRegisteredUser = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, i) => (
+              {currentusers.map((user, i) => (
                 <tr key={user._id}>
                   <th scope="row">{i + 1}</th>
                   <td className="text-capitalize">{user.name}</td>
@@ -152,29 +173,50 @@ const AllRegisteredUser = () => {
                     >
                       Delete
                     </button>
-        {/* <!-- Modal --> */}
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered ">
-    <div class="modal-content p-2">
-      <div class="modal-header border-0">
-                            <p class="" style={{fontSize:"1.125rem", lineHeight:"1.75rem", fontWeight:"700",letterSpacing:"0px", marginBottom:"0",color:"rgb(51, 51, 51)"}}                      id="exampleModalLabel">Are you sure you want to delete!</p>
-        <button type="button" class="btn-xs btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="" style={{fontSize:"16px", lineHeight:"1.75rem", fontWeight:"500",letterSpacing:"0px",paddingLeft:"16px",paddingBottom:"32px",color:"rgb(51, 51, 51)"}}>
-                            If you delete {user.name } it can not be undone!
-      </div>
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" onClick={() => handleDetetingUser(user)}>Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
+                    {/* <!-- Modal --> */}
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered ">
+                        <div class="modal-content p-2">
+                          <div class="modal-header border-0">
+                            <p class="" style={{ fontSize: "1.125rem", lineHeight: "1.75rem", fontWeight: "700", letterSpacing: "0px", marginBottom: "0", color: "rgb(51, 51, 51)" }} id="exampleModalLabel">Are you sure you want to delete!</p>
+                            <button type="button" class="btn-xs btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="" style={{ fontSize: "16px", lineHeight: "1.75rem", fontWeight: "500", letterSpacing: "0px", paddingLeft: "16px", paddingBottom: "32px", color: "rgb(51, 51, 51)" }}>
+                            If you delete {user.name} it can not be undone!
+                          </div>
+                          <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" onClick={() => handleDetetingUser(user)}>Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          {/* <!-- ======= Footer tools ======= --> */}
+          <div class="footer-tools px-4 py-3" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div class="list-items">
+              Show
+              <select onChange={handleSelectChange} style={{ marginLeft: "7px", marginRight: "7px", border: "2px solid #005967" }}>
+                <option value="5" selected>5</option>
+                <option value="10" >10</option>
+                <option value="15">15</option>
+              </select>
+              entries
+            </div>
+
+            <div class="pagination mb-0">
+              {pageNumbers.map((number) => (
+                <button onClick={() => paginate(number)} key={number}
+                  className={currentPage === number ? "active-page" : "page"}>
+                  {number}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

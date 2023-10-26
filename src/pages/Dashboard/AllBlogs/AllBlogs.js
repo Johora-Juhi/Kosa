@@ -24,7 +24,7 @@ const AllBlogs = () => {
 
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [blogsPerPage,setBlogsPerPage] = useState(5); // Number of blogs to display per page
+  const [blogsPerPage, setBlogsPerPage] = useState(5); // Number of blogs to display per page
 
   // Calculate index of the last blog on the current page
   const indexOfLastBlog = currentPage * blogsPerPage;
@@ -41,10 +41,6 @@ const AllBlogs = () => {
   }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-
-
-
 
   const handleDetetingUser = (blog) => {
     fetch(`https://hair-saloon-server.vercel.app/blogs/${blog._id}`, {
@@ -154,25 +150,24 @@ const AllBlogs = () => {
 
           </table>
           {/* <!-- ======= Footer tools ======= --> */}
-          <div class="footer-tools px-4 py-3" style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+          <div class="footer-tools px-4 py-3" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div class="list-items">
-              Show 
-              <select onChange={handleSelectChange} style={{marginLeft:"7px",marginRight:"7px", border:"2px solid #005967"}}>
+              Show
+              <select onChange={handleSelectChange} style={{ marginLeft: "7px", marginRight: "7px", border: "2px solid #005967" }}>
                 <option value="5" selected>5</option>
                 <option value="10" >10</option>
-                <option value="2" >2</option>
                 <option value="15">15</option>
               </select>
               entries
             </div>
 
             <div class="pagination mb-0">
-                {pageNumbers.map((number) => (
-                    <button onClick={() => paginate(number)} key={number}
-                className={currentPage === number ? "active" : "page" }>
-                      {number}
-                    </button>
-                ))}
+              {pageNumbers.map((number) => (
+                <button onClick={() => paginate(number)} key={number}
+                  className={currentPage === number ? "active-page" : "page"}>
+                  {number}
+                </button>
+              ))}
             </div>
           </div>
 
