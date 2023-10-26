@@ -11,36 +11,25 @@ const AllBlogs = () => {
 
   const [editBlog, setEditBlog] = useState([]);
 
-
-  const { data: blogs = [], refetch } = useQuery({
-    queryKey: ["blogs"],
-    queryFn: async () => {
-      const res = await fetch("https://hair-saloon-server.vercel.app/allblogs");
+  const [size, setSize] = useState(5);
+  const [page, setPage] = useState(0);
+  const { data: blogsData = { blogs: [], count: 0 }, refetch } = useQuery(
+    ["blogs", size,page], // Provide a unique key for the query based on the size
+    async () => {
+      const res = await fetch(`https://hair-saloon-server.vercel.app/blogs?page=${page}&size=${size}`);
       const data = await res.json();
       return data;
-    },
-  });
+    }
+  );
+console.log(blogsData);
+  const { blogs, count } = blogsData;
+  const pages = Math.ceil(count / size);
 
-
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [blogsPerPage, setBlogsPerPage] = useState(5); // Number of blogs to display per page
-
-  // Calculate index of the last blog on the current page
-  const indexOfLastBlog = currentPage * blogsPerPage;
-  // Calculate index of the first blog on the current page
-  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
-
-  // Slice the array of blogs to display only the blogs for the current page
-  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
-
-  // Logic for displaying page numbers
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(blogs.length / blogsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handleSelectChange = (event) => {
+    const selectedValue = parseInt(event.target.value, 10);
+    setSize(selectedValue);
+    setPage(0)
+  };
 
   const handleDetetingUser = (blog) => {
     fetch(`https://hair-saloon-server.vercel.app/blogs/${blog._id}`, {
@@ -63,11 +52,7 @@ const AllBlogs = () => {
         }
       });
   };
-  const handleSelectChange = (event) => {
-    const selectedValue = parseInt(event.target.value, 10); // Parse the selected value to an integer
-    setBlogsPerPage(selectedValue);
-    setCurrentPage(1); // Reset current page to 1 when the number of blogs per page is changed
-  };
+
   return (
     <>
       <div className="container mx-auto mt-4">
@@ -103,7 +88,7 @@ const AllBlogs = () => {
               </tr>
             </thead>
             <tbody>
-              {currentBlogs.map((blog, i) => (
+              {blogs.map((blog, i) => (
                 <tr key={blog._id}>
                   <th scope="row">{i + 1}</th>
                   <td>{blog.blogTitle}</td>
@@ -162,12 +147,15 @@ const AllBlogs = () => {
             </div>
 
             <div class="pagination mb-0">
-              {pageNumbers.map((number) => (
-                <button onClick={() => paginate(number)} key={number}
-                  className={currentPage === number ? "active-page" : "page"}>
-                  {number}
-                </button>
-              ))}
+            {[...Array(pages).keys()].map((number) => (
+              <button
+                key={number}
+                className={page === number ? "active-page" : "page"}
+                onClick={() => setPage(number)}
+              >
+                {number+1}
+              </button>
+            ))}
             </div>
           </div>
 
