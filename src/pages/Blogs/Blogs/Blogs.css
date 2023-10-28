@@ -1,3 +1,9 @@
+/* .container{
+    scroll-behavior: auto;
+}
+.blog-container{
+    scroll-behavior: auto;
+} */
 .pagination{
     text-align: center;
     margin-bottom: 10px;

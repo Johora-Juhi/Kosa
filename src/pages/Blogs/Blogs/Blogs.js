@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Blog from "../Blog/Blog";
 import './Blogs.css'
 
@@ -8,6 +8,7 @@ const Blogs = () => {
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(5);
+
   useEffect(() => {
     fetch(
       `https://hair-saloon-server.vercel.app/blogs?page=${page}&size=${size}`
@@ -16,7 +17,9 @@ const Blogs = () => {
       .then((data) => {
         setBlogs(data.blogs);
         setCount(data.count);
-          window.scrollTo(0, 0)
+        window.scroll(0, 0);
+        // document.body.style.scrollBehavior = 'unset';
+
       });
   }, [page, size]);
   const pages = Math.ceil(count / size);

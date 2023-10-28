@@ -17,7 +17,7 @@ const Footer = () => {
         "template_t4khxlp",
         form.current,
         "HcDRoU-wmqyzWpFtz"
-    )
+      )
       .then(
         (result) => {
           Swal.fire({

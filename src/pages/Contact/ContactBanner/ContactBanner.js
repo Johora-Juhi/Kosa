@@ -202,7 +202,7 @@ const ContactBanner = () => {
                 })}
             ></textarea>
             {
-              errors.message && <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none",marginTop: "5px" }}>{errors.message?.message}</p>
+              errors.message && <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none", marginTop: "5px" }}>{errors.message?.message}</p>
             }
           </div>
           <div className="row ms-1 mt-5 cuBtn">
