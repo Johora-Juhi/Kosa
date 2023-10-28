@@ -7,21 +7,18 @@ import './AllBlog.css'
 
 const AllBlogs = () => {
   useTitle('Blogs');
-
-
   const [editBlog, setEditBlog] = useState([]);
-
   const [size, setSize] = useState(5);
   const [page, setPage] = useState(0);
+
   const { data: blogsData = { blogs: [], count: 0 }, refetch } = useQuery(
-    ["blogs", size,page], // Provide a unique key for the query based on the size
+    ["blogs", size, page], // Provide a unique key for the query based on the size
     async () => {
       const res = await fetch(`https://hair-saloon-server.vercel.app/blogs?page=${page}&size=${size}`);
       const data = await res.json();
       return data;
     }
   );
-console.log(blogsData);
   const { blogs, count } = blogsData;
   const pages = Math.ceil(count / size);
 
@@ -108,7 +105,6 @@ console.log(blogsData);
                       Make Change
                     </button>
                     {
-
                       editBlog &&
                       (
                         <EditingBlogModal
@@ -132,7 +128,6 @@ console.log(blogsData);
                 </tr>
               ))}
             </tbody>
-
           </table>
           {/* <!-- ======= Footer tools ======= --> */}
           <div class="footer-tools px-4 py-3" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -145,20 +140,18 @@ console.log(blogsData);
               </select>
               entries
             </div>
-
             <div class="pagination mb-0">
-            {[...Array(pages).keys()].map((number) => (
-              <button
-                key={number}
-                className={page === number ? "active-page" : "page"}
-                onClick={() => setPage(number)}
-              >
-                {number+1}
-              </button>
-            ))}
+              {[...Array(pages).keys()].map((number) => (
+                <button
+                  key={number}
+                  className={page === number ? "active-page" : "page"}
+                  onClick={() => setPage(number)}
+                >
+                  {number + 1}
+                </button>
+              ))}
             </div>
           </div>
-
         </div>
       </div>
     </>

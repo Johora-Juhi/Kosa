@@ -17,10 +17,9 @@ const Footer = () => {
         "template_t4khxlp",
         form.current,
         "HcDRoU-wmqyzWpFtz"
-      )
+    )
       .then(
         (result) => {
-          console.log(result.text)
           Swal.fire({
             position: 'center center',
             icon: 'success',
@@ -30,7 +29,7 @@ const Footer = () => {
           })
         },
         (error) => {
-          console.log(error.text);
+          console.error(error.text);
         }
       );
     e.target.reset();
