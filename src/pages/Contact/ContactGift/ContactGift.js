@@ -14,7 +14,7 @@ const ContactGift = () => {
                                 <div className="mainTitleContactss">GIFT VOUCHER</div>
                             </div>
                             <p>Available for all occasions, for a specific treatment or monetary amount. Please call us or email us for more details.</p>
-                            <h2><i className="fa-solid fa-phone"></i>  +32 94584 4850</h2>
+                            <h2><i className="fa-solid fa-phone"></i>  <a href="tel: +32 94584 4850" style={{textDecoration:"none", color:"white"}}>+32 94584 4850</a></h2>
                         </div>
                     </div>
                 </div>

@@ -43,28 +43,28 @@ const SendingInterest = () => {
       .then((data) => {
         if (data.insertedId) {
           emailjs
-          .sendForm(
-            "service_v7efq22",
-            "template_t4khxlp",
-            form.current,
-            "HcDRoU-wmqyzWpFtz"
-          )
-          .then(
-            (result) => {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Message Sent",
-                showConfirmButton: false,
-                timer: 2000,
-              });
-              reset();
-            },
-            (error) => {
-              console.error(error.text);
-            }
-          );
-         
+            .sendForm(
+              "service_v7efq22",
+              "template_t4khxlp",
+              form.current,
+              "HcDRoU-wmqyzWpFtz"
+            )
+            .then(
+              (result) => {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Message Sent",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+                reset();
+              },
+              (error) => {
+                console.error(error.text);
+              }
+            );
+
         }
       });
   };
@@ -90,13 +90,13 @@ const SendingInterest = () => {
                     id=""
                     placeholder="Enter Your First Name"
                     {...register("firstName",
-                {
-                  required: "First Name is required"
+                      {
+                        required: "First Name is required"
                       })}
 
                   />
                   {
-                    errors.firstName &&                       <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none",marginTop:"-15px" }}>{errors.firstName?.message}</p>
+                    errors.firstName && <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none", marginTop: "-15px" }}>{errors.firstName?.message}</p>
                   }
                 </div>
                 <div className="col-md-6 col-sm-12 px-4">
@@ -109,9 +109,9 @@ const SendingInterest = () => {
                     id=""
                     placeholder="Enter Your Last Name"
                     {...register("lastName",
-                   )}
-                      />
-                                     </div>
+                    )}
+                  />
+                </div>
               </div>
               <div className="row">
                 <div className="col-md-6 col-sm-12 px-4">
@@ -126,14 +126,14 @@ const SendingInterest = () => {
                     {...register("email", {
                       required: "Email is required",
                       pattern: {
-                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                          message: "Invalid email address"
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Invalid email address"
                       }
-                  })}
-                      />
-                      {
-                        errors.email &&                       <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none",marginTop:"-15px" }}>{errors.email?.message}</p>
-                      }                </div>
+                    })}
+                  />
+                  {
+                    errors.email && <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none", marginTop: "-15px" }}>{errors.email?.message}</p>
+                  }                </div>
                 <div className="col-md-6 col-sm-12 px-4">
                   <label htmlFor="">PHONE</label>
                   <br />
@@ -144,49 +144,51 @@ const SendingInterest = () => {
                     id=""
                     placeholder="Enter Your Phone Number"
                     {...register("phone",
-                    {
-                        // required: "Phone is required",
-                        validate:{
-                        isValidPhoneNumber:(value)=> {if (!value) return true; // Allow empty value
-                        return isValidPhoneNumber(value) || "Invalid. Must include country code.";}
-                      }
+                      {
+                        validate: {
+                          isValidPhoneNumber: (value) => {
+                            if (!value) return true; // Allow empty value
+                            return isValidPhoneNumber(value) || "Invalid. Must include country code.";
+                          }
+                        }
                       }
                     )}
-    
-                      />
-                      {
-                        errors.phone &&                       <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none",marginTop:"-15px" }}>{errors.phone?.message}</p>
-                      }
+
+                  />
+                  {
+                    errors.phone && <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none", marginTop: "-15px" }}>{errors.phone?.message}</p>
+                  }
                 </div>
               </div>
               <div className="row px-4">
-                <label htmlFor="" style={{paddingLeft:"0"}}>I'M INTERESTED IN-</label>
+                <label htmlFor="" style={{ paddingLeft: "0" }}>I'M INTERESTED IN-</label>
                 <br />
-                
+
                 <select
                   // ref={choiceRef}
                   className="form-select"
                   aria-label="Default select example"
-                style={{    border: "2px solid rgb(211, 211, 211)"
-                }}
+                  style={{
+                    border: "2px solid rgb(211, 211, 211)"
+                  }}
                   {...register("choice",
-                  {
-                    required: "Must Choose your preference"
-                        })}
+                    {
+                      required: "Must Choose your preference"
+                    })}
                 >
                   <option value="">Choose your preference</option>
                   <option value="coloring">Coloring</option>
                   <option value="rebonding">Rebonding</option>
                   <option value="style">Style</option>
-                 
-    
-                      </select>
-                      {
-                        errors.choice &&                       <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none",marginBottom:"0",marginTop:"15px",paddingLeft:"0"}}>{errors.choice?.message}</p>
-                      }
+
+
+                </select>
+                {
+                  errors.choice && <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none", marginBottom: "0", marginTop: "15px", paddingLeft: "0" }}>{errors.choice?.message}</p>
+                }
               </div>
               <div className="row px-4 mt-4">
-                <label htmlFor="" style={{paddingLeft:"0"}}>MESSAGE</label>
+                <label htmlFor="" style={{ paddingLeft: "0" }}>MESSAGE</label>
                 <textarea
                   // ref={messageRef}
                   name=""
@@ -195,13 +197,13 @@ const SendingInterest = () => {
                   rows="1"
                   placeholder="Enter Your Message"
                   {...register("message",
-                  {
-                    required: "What is your message to us?"
-                        })}
+                    {
+                      required: "What is your message to us?"
+                    })}
                 ></textarea>
                 {
-                        errors.message &&                       <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none",marginTop:"-15px",paddingLeft:"0" }}>{errors.message?.message}</p>
-                      }
+                  errors.message && <p style={{ color: 'red', fontSize: '13px', letterSpacing: '1.5px', width: "auto", pointerEvents: "none", marginTop: "-15px", paddingLeft: "0" }}>{errors.message?.message}</p>
+                }
               </div>
               <div className="row ms-3 ">
                 <button type="submit">Send</button>
