@@ -26,7 +26,7 @@ const Products = () => {
     useEffect(() => {
       dispatch(getcartItem(user?.email));
     }, [dispatch]);
-    console.log(cartItems);
+    // console.log(cartItems);
     const cart = useSelector(state => state.cart);
     const cartDetails = cart.cart;
     const cartLength = (cart.cart.length);

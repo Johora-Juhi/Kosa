@@ -21,7 +21,6 @@ export const getcartItem = createAsyncThunk(
 
         const data = await res.json()
         console.log(data);
-
         return data;
     }
 );
@@ -55,7 +54,7 @@ export const addToCartAsync = createAsyncThunk('cartItem/addToCart', async ({ pr
         }
     } else {
         // If the product is already in the cart, update its quantity locally
-        selectedProduct.quantity += 1;
+        const quantity = selectedProduct.quantity + 1;
 
         try {
             // Make API call to update the product quantity in the cart on the server
@@ -64,16 +63,17 @@ export const addToCartAsync = createAsyncThunk('cartItem/addToCart', async ({ pr
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ quantity: selectedProduct.quantity }),
+                body: JSON.stringify( { quantity: quantity } ),
             });
 
             if (response.ok) {
-                console.log('Product quantity updated in the cart successfully!');
+                await dispatch(getcartItem(userEmail));
+                toast.success('Product quantity updated successfully!');
             } else {
-                console.error('Error updating product quantity in the cart:', response.status);
+                toast.error('Error updating product quantity in the cart:', response.status);
             }
         } catch (error) {
-            console.error('Error updating product quantity in the cart:', error);
+            toast.error('Error updating product quantity in the cart:', error);
         }
     }
 });
