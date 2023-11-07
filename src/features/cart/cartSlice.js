@@ -1,3 +1,4 @@
+
 import { createSlice } from "@reduxjs/toolkit"
 import toast from 'react-hot-toast';
 const notify = () => toast.success('Added to cart');
@@ -6,7 +7,7 @@ const initialState = {
     cart: []
 }
 
-const cartSlice = createSlice({
+const CartSlice = createSlice({
 
     name: 'cart',
     initialState,
@@ -42,5 +43,5 @@ const cartSlice = createSlice({
     }
 })
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
-export default cartSlice.reducer;
+export const { addToCart, removeFromCart } = CartSlice.actions;
+export default CartSlice.reducer;

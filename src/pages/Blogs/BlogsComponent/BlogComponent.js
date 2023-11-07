@@ -10,7 +10,7 @@ const BlogComponent = () => {
         window.scrollTo(0,0)
         }, [])
     return (
-        <div className='blog-container' style={{scrollBehavior:"auto"}}>
+        <div>
             <BlogBanner></BlogBanner>
             <Blogs></Blogs>
         </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loading from '../../../components/loading/Loading';
 import { useGetProductsQuery } from '../../../features/api/productSlice';
@@ -8,13 +8,25 @@ import Product from '../Product/Product';
 import ShopCart from '../ShopCart/ShopCart';
 import UpCommingProduct from '../UpCommingProduct/UpCommingProduct';
 import './Products.css';
+import { getcartItem } from '../../../features/cart/cartApi';
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Products = () => {
+    const dispatch = useDispatch();
+    const {user} = useContext(AuthContext)
 
 
     const [upcommingProducts, setUpcommingProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-
+    const cartItems = useSelector((state) => state.cartItem);
+    const { deleteSuccess, isError, error, cartItem } = cartItems;
+    // const [cartItem, setcartItem] = useState([]);
+  
+    useEffect(() => {
+      dispatch(getcartItem(user?.email));
+    }, [dispatch]);
+    console.log(cartItems);
     const cart = useSelector(state => state.cart);
     const cartDetails = cart.cart;
     const cartLength = (cart.cart.length);
