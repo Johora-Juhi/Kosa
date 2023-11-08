@@ -3,16 +3,26 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartTable from '../Cart Table/CartTable';
 import './CartDetails.css';
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const CartDetails = () => {
+    const { user, logOut } = useContext(AuthContext);
 
-    const cart = useSelector(state => state.cart);
-    const cartDetails = cart.cart;
-    const cartLength = (cart.cart.length);
+console.log( );
+const cartItems = useSelector((state) => state.cartItem);
+const { deleteSuccess, isError, error, cartItem } = cartItems;
+console.log(cartItem);
+    // const cartDetails = cartItems.cartItem;
+    // console.log(cartDetails);
+    const cartLength = (cartItem.length);
 
 
-    const eachProductCost = (cartDetails.map(c => (c.price * c.quantity)));
-    const subTotal = (eachProductCost.reduceRight((acc, cur) => acc + cur, 0)).toFixed(2);
+    let subTotal = 0;
+    if (cartLength) {
+        const eachProductQuantity = (cartItem.map(c => (c.price * c.quantity)));
+        subTotal = (eachProductQuantity.reduceRight((acc, cur) => acc + cur, 0)).toFixed(2);
+    }
 
     return (
         <div className='cartDetails'>{cartLength ?
@@ -32,8 +42,8 @@ const CartDetails = () => {
                         </thead>
                         <tbody>
                             {
-                                cartDetails &&
-                                cartDetails.map((cartProduct, i) => <CartTable
+                                cartItem &&
+                                cartItem.map((cartProduct, i) => <CartTable
                                     serial={i}
                                     key={cartProduct._id}
                                     cartProduct={cartProduct}

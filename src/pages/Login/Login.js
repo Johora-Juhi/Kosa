@@ -6,9 +6,13 @@ import useToken from '../../hooks/useToken';
 import './Login.css';
 import useTitle from '../../hooks/useTitle';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getcartItem } from '../../features/cart/cartApi';
 
 const Login = () => {
     useTitle('Login');
+    const dispatch = useDispatch();
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { signIn } = useContext(AuthContext);

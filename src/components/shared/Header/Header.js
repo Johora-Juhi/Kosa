@@ -1,16 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import './Header.css';
 import logo from '../../../../src/Images/HomePage/Logo.png';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { FaShoppingCart } from "react-icons/fa";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getcartItem } from '../../../features/cart/cartApi';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
-    const cart = useSelector(state => state.cart);
-    const cartLength = (cart.cart.length);
+    const dispatch = useDispatch();
+    useEffect(() => {
+         dispatch(getcartItem(user?.email));
+    }, [user?.email, dispatch]);
+    let subTotal = 0;
+    const cartItem = useSelector(state => state.cartItem);
+    const cartLength = (cartItem.cartItem.length);
+
+    if (cartLength) { 
+        const eachProductQuantity = (cartItem.cartItem.map(c => (c.quantity)));
+        subTotal = (eachProductQuantity.reduceRight((acc, cur) => acc + cur, 0));
+    }
 
     const handleLogOut = () => {
         logOut()
@@ -34,9 +45,17 @@ const Header = () => {
                             <Nav.Link as={Link} to="/blogs" className='navName'>BLOG</Nav.Link>
                             <Nav.Link as={Link} to="/contact" className='navName'>CONTACT</Nav.Link>
                         </Nav>
-                        <Nav className='align-items-center'>
-                            {cartLength > 0 &&
-                                <Link to="/cart"><FaShoppingCart style={{ color: "black",fontSize: '50px', marginRight: '20px', border: '1px solid black', padding: '15px', cursor: 'pointer' }}></FaShoppingCart></Link>
+                        <Nav className='align-items-center '>
+                            {cartLength > 0 ?
+                                <Link to="/cart" className='position-relative'>
+                                    <FaShoppingCart className='grid place-items-center' style={{ color: "black", fontSize: '50px', marginRight: '20px', border: '1px solid black', padding: '15px', cursor: 'pointer' }}></FaShoppingCart>
+                                    <span className='position-absolute top-0 end-0 translate-middle badge rounded-pill bg-dark'>{subTotal}</span>
+                                </Link>
+                                :
+                                <Link to="/cart" className='position-relative'>
+                                    <FaShoppingCart className='grid place-items-center' style={{ color: "black", fontSize: '50px', marginRight: '20px', border: '1px solid black', padding: '15px', cursor: 'pointer' }}></FaShoppingCart>
+                                    <span className='position-absolute top-0 end-0 translate-middle badge rounded-pill bg-dark'>0</span>
+                                </Link>
                             }
                             {
                                 user?.uid ?

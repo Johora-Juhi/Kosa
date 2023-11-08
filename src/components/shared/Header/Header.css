@@ -6,7 +6,9 @@
     background-color: #fff!important;
     z-index: 99999999;
 }
-
+.logoImg{
+    padding: 10px 0;
+}
 .navSpace{
     letter-spacing: 1.5px!important;
 }

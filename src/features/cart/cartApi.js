@@ -20,7 +20,6 @@ export const getcartItem = createAsyncThunk(
         });
 
         const data = await res.json()
-        console.log(data);
         return data;
     }
 );
@@ -68,7 +67,7 @@ export const addToCartAsync = createAsyncThunk('cartItem/addToCart', async ({ pr
 
             if (response.ok) {
                 await dispatch(getcartItem(userEmail));
-                toast.success('Product quantity updated successfully!');
+                toast.success('Product quantity updated!');
             } else {
                 toast.error('Error updating product quantity in the cart:', response.status);
             }
@@ -78,6 +77,56 @@ export const addToCartAsync = createAsyncThunk('cartItem/addToCart', async ({ pr
     }
 });
 
+export const removeFromCartAsync = createAsyncThunk('cartItem/removeFromCart', async ({ product, userEmail }, { dispatch, getState }) => { 
+    if (product.quantity > 1) {
+        const quantity = product.quantity - 1;
+
+        try {
+            // Make API call to update the product quantity in the cart on the server
+            const response = await fetch(`http://localhost:5000/cart/${product._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify( { quantity: quantity } ),
+            });
+
+            if (response.ok) {
+                await dispatch(getcartItem(userEmail));
+                toast.success('Product quantity updated!');
+            } else {
+                toast.error('Error updating product quantity in the cart:', response.status);
+            }
+        } catch (error) {
+            toast.error('Error updating product quantity in the cart:', error);
+        }
+    }
+    
+}
+)
+export const deleteFromCartAsync = createAsyncThunk('cartItem/deleteFromCart', async ({ product, userEmail }, { dispatch, getState }) => { 
+
+        try {
+            // Make API call to update the product quantity in the cart on the server
+            const response = await fetch(`http://localhost:5000/cart/${product._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json()
+
+            if (data.deletedCount>0) {
+                await dispatch(getcartItem(userEmail));
+                toast.success('Product deleted from cart!');
+            } else {
+                toast.error('Error deleting product quantity in the cart:', response.status);
+            }
+        } catch (error) {
+            toast.error('Error deleting product quantity in the cart:', error);
+        }
+    }
+)
 const CartApi = createSlice({
     name: "cartItem",
     initialState,
@@ -122,6 +171,40 @@ const CartApi = createSlice({
                 state.isError = false;
             })
             .addCase(addToCartAsync.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.postSuccess = false;
+                state.error = action.error.message;
+            })
+            .addCase(removeFromCartAsync.pending, (state) => {
+                state.isLoading = true;
+                state.postSuccess = false;
+                state.isError = false;
+            })
+            .addCase(removeFromCartAsync.fulfilled, (state, action) => {
+                console.log(action);
+                state.isLoading = false;
+                state.postSuccess = true;
+                state.isError = false;
+            })
+            .addCase(removeFromCartAsync.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.postSuccess = false;
+                state.error = action.error.message;
+            })
+            .addCase(deleteFromCartAsync.pending, (state) => {
+                state.isLoading = true;
+                state.postSuccess = false;
+                state.isError = false;
+            })
+            .addCase(deleteFromCartAsync.fulfilled, (state, action) => {
+                console.log(action);
+                state.isLoading = false;
+                state.postSuccess = true;
+                state.isError = false;
+            })
+            .addCase(deleteFromCartAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.postSuccess = false;

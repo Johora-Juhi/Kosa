@@ -13,48 +13,23 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Products = () => {
-    const dispatch = useDispatch();
-    const {user} = useContext(AuthContext)
-
-
     const [upcommingProducts, setUpcommingProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const cartItems = useSelector((state) => state.cartItem);
-    const { deleteSuccess, isError, error, cartItem } = cartItems;
-    // const [cartItem, setcartItem] = useState([]);
-  
-    useEffect(() => {
-      dispatch(getcartItem(user?.email));
-    }, [dispatch]);
-    // console.log(cartItems);
+    const cartItem = useSelector(state => state.cartItem);
+    const cartLength = (cartItem.cartItem.length);
+
     const cart = useSelector(state => state.cart);
     const cartDetails = cart.cart;
-    const cartLength = (cart.cart.length);
 
-    const eachProductCost = (cartDetails.map(c => (c.price * c.quantity)));
-    const subTotal = (eachProductCost.reduceRight((acc, cur) => acc + cur, 0)).toFixed(2);
-
+    let subTotal = 0;
+    if (cartLength) {
+        const eachProductQuantity = (cartItem.cartItem.map(c => (c.price * c.quantity)));
+        subTotal = (eachProductQuantity.reduceRight((acc, cur) => acc + cur, 0)).toFixed(2);
+    }
    
-    // const [count, setCount] = useState(0);
-    // const [page, setPage] = useState(0);
-    // const [size, setSize] = useState(10);
-
-    // useEffect(() => {
-    //     const url = `http://localhost:5000/products?page=${page}&size=${size}`;
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setProducts(data.products);
-    //             setCount(data.count);
-    //         })
-    // }, [page, size])
-
     const { data, isLoading } = useGetProductsQuery();
     const products = data;
-    // console.log(products);
-    // const count = products.length;
-    // const pages = Math.ceil(count / size);
-    
+
     if (isLoading) {
         <Loading></Loading>
     }
@@ -75,7 +50,7 @@ const Products = () => {
             <div className="products py-5">
                 <div className="container">
                     <div className="row p-0 m-0">
-                        {products?.length&&<div className='show'>Showing 1-{products.length} of {products.length} results</div>}
+                        {products?.length && <div className='show'>Showing 1-{products.length} of {products.length} results</div>}
                         <div className="col-lg-9 col-md-12 px-4">
                             <div className="proContainer">
                                 {
@@ -87,21 +62,6 @@ const Products = () => {
                                     )
                                 }
                             </div>
-                            {/* <div className="pagination">
-                <p>You are currently at :{page} & size{size}</p>
-                {
-                    [...Array(pages).keys()].map(number => <button
-                        key={number}
-                        className={page === number ? "selected" : ''}
-                        onClick={() => setPage(number)}>{number}</button>)
-                }
-                <select onChange={event => setSize(event.target.value)}>
-                    <option value="5">5</option>
-                    <option value="10" selected>10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
-            </div> */}
                         </div>
                         <div className="col-lg-3 col-md-12 rightProducts">
                             {
@@ -111,7 +71,7 @@ const Products = () => {
                             <div className='mb-5'>
                                 {
                                     cartLength > 0 &&
-                                    cartDetails.map(cart => <ShopCart
+                                    cartItem.cartItem.map(cart => <ShopCart
                                         key={cart._id}
                                         cart={cart}
                                     ></ShopCart>)
